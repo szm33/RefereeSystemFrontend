@@ -4,6 +4,12 @@
   "newProjectRoot": "projects",
   "projects": {
     "RefereeSystem": {
+      "i18n": {
+        "sourceLocale": "en-US",
+        "locales": {
+          "pl": "src/locale/messages.pl.xlf"
+        }
+      },
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -24,6 +30,7 @@
               "src/assets"
             ],
             "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
               "src/styles.css"
             ],
             "scripts": []
