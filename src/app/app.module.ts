@@ -14,6 +14,7 @@ import { BoardModeratorComponent } from './board-moderator/board-moderator.compo
 import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
+import { errorInterceptorProviders } from './_helpers/error.interceptor';
 import { RefereeComponent } from './referee/referee.component';
 import { RefereeModalComponent } from './referee-modal/referee-modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
@@ -23,6 +24,10 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
 import { HttpClientModule, HttpClient } from '@angular/common/http';
+import { ErrorComponent } from './error/error.component';
+import { PrivilegesComponent } from './privileges/privileges.component';
+import { RefereeDetailsComponent } from './referee-details/referee-details.component';
+import { RefereeModifyComponent } from './referee-modify/referee-modify.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,7 +44,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     BoardAdminComponent,
     BoardModeratorComponent,
     RefereeComponent,
-    RefereeModalComponent
+    RefereeModalComponent,
+    ErrorComponent,
+    PrivilegesComponent,
+    RefereeDetailsComponent,
+    RefereeModifyComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +64,7 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
-  providers: [authInterceptorProviders],
+  providers: [authInterceptorProviders, errorInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

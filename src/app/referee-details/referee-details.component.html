@@ -1,0 +1,17 @@
+<div *ngIf="referee">
+
+    <h2>{{referee.name | uppercase}} {{referee.surname | uppercase}} Details</h2>
+    <div>
+        <label>email:
+            <div>
+                {{referee.email}}
+            </div>
+        </label>
+        <label>license:
+            <div>
+                {{referee.license}}
+            </div>
+        </label>
+    </div>
+    <app-referee-modify [referee]="referee"></app-referee-modify>
+</div>

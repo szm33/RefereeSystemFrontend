@@ -28,8 +28,11 @@ export class AppComponent implements OnInit {
       const user = this.tokenStorageService.getUser();
       this.username = user.username;
     }
-    this.authService.locale().subscribe(data => {console.log(data);
-    this.translate.use(data.value);});
+    this.authService.locale().subscribe(
+      data => {
+        console.log(data);
+        this.translate.use(data.value);
+      });
   }
 
   logout(): void {

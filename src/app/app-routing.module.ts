@@ -10,6 +10,9 @@ import { BoardUserComponent } from './board-user/board-user.component';
 import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './board-admin/board-admin.component';
 import {RefereeComponent} from './referee/referee.component';
+import {ErrorComponent} from './error/error.component';
+import {PrivilegesComponent} from './privileges/privileges.component';
+import {RefereeDetailsComponent} from './referee-details/referee-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -20,6 +23,9 @@ const routes: Routes = [
   { path: 'mod', component: BoardModeratorComponent },
   { path: 'admin', component: BoardAdminComponent },
   { path: 'referee', component: RefereeComponent },
+  { path: 'error', component: ErrorComponent },
+  { path: 'noPrivileges', component: PrivilegesComponent },
+  { path: 'referee/:id', component: RefereeDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

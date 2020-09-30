@@ -3,5 +3,6 @@
 <ul class="heroes">
   <li *ngFor="let referee of referees">
     <span class="badge">{{referee.name}}</span> {{referee.surname}}
+    <button class="btn-success" [routerLink] = "[referee.id]">{{'Referee details' | translate}}</button>
   </li>
 </ul>
