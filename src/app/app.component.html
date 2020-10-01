@@ -5,17 +5,20 @@
       <li class="nav-item">
         <a href="/home" class="nav-link" routerLink="home">Home </a>
       </li>
-      <li class="nav-item" *ngIf="showAdminBoard">
-        <a href="/admin" class="nav-link" routerLink="admin">Admin Board</a>
-      </li>
-      <li class="nav-item" *ngIf="showModeratorBoard">
-        <a href="/mod" class="nav-link" routerLink="mod">Moderator Board</a>
+      <li class="nav-item">
+        <a href="/account" class="nav-link" routerLink="account">My account</a>
       </li>
       <li class="nav-item">
         <a href="/user" class="nav-link" *ngIf="isLoggedIn" routerLink="user">User</a>
       </li>
       <li class="nav-item">
-        <a href="/referee" class="nav-link" routerLink="referee">Referee</a>
+        <a href="/referee" class="nav-link" routerLink="referee">Referees</a>
+      </li>
+      <li class="nav-item">
+        <a href="/team" class="nav-link" routerLink="team">Teams</a>
+      </li>
+      <li class="nav-item">
+        <a href="/match" class="nav-link" routerLink="referee">Matches</a>
       </li>
     </ul>
 

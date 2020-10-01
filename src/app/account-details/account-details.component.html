@@ -1,0 +1,16 @@
+<h1>My account</h1>
+<div class="form-group">
+    <label for="username">Username</label>
+    <div id="username">{{account.username}}</div>
+    <label for="email">Email</label>
+    <input id="email" class="form-control" placeholder="email" [(ngModel)]="account.email">
+    <button (click)="modifyMyAccount()">modify</button>
+    <br/>
+    <label for="oldPaswssword">Old password</label>
+    <input type="text" id="oldPaswssword" [(ngModel)]="password.oldPassword">
+    <label for="paswssword">New password</label>
+    <input type="text" id="paswssword" [(ngModel)]="password.newPassword">
+    <label for="confirmedPaswssword">Confirm password</label>
+    <input type="text" id="confirmedPaswssword" [(ngModel)]="password.confirmedPassword">
+    <button (click)="changePassword()">modify</button>
+</div>

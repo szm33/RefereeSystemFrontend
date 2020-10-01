@@ -45,10 +45,10 @@ export class ErrorInterceptor implements HttpInterceptor {
           } else {
               debugger;
               if (error.status == 403 && !this.tokenStorage.getToken()) {
-                  window.location.href = 'login';
+                  // window.location.href = 'login';
               }
               else if (error.status == 403) {
-                  window.location.href = 'noPrivileges';
+                  // window.location.href = 'noPrivileges';
               }
               else if (window.location.pathname != "/error"){
                   // window.location.href = 'error'

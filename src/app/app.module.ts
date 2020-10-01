@@ -8,10 +8,6 @@ import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
-import { ProfileComponent } from './profile/profile.component';
-import { BoardAdminComponent } from './board-admin/board-admin.component';
-import { BoardModeratorComponent } from './board-moderator/board-moderator.component';
-import { BoardUserComponent } from './board-user/board-user.component';
 
 import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { errorInterceptorProviders } from './_helpers/error.interceptor';
@@ -28,6 +24,7 @@ import { ErrorComponent } from './error/error.component';
 import { PrivilegesComponent } from './privileges/privileges.component';
 import { RefereeDetailsComponent } from './referee-details/referee-details.component';
 import { RefereeModifyComponent } from './referee-modify/referee-modify.component';
+import { AccountDetailsComponent } from './account-details/account-details.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -39,16 +36,13 @@ export function HttpLoaderFactory(http: HttpClient) {
     LoginComponent,
     RegisterComponent,
     HomeComponent,
-    ProfileComponent,
-    BoardUserComponent,
-    BoardAdminComponent,
-    BoardModeratorComponent,
     RefereeComponent,
     RefereeModalComponent,
     ErrorComponent,
     PrivilegesComponent,
     RefereeDetailsComponent,
-    RefereeModifyComponent
+    RefereeModifyComponent,
+    AccountDetailsComponent
   ],
   imports: [
     BrowserModule,

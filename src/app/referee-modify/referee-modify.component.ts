@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
 import {RefereeService} from '../_services/referee.service';
 
 @Component({
@@ -6,9 +6,10 @@ import {RefereeService} from '../_services/referee.service';
   templateUrl: './referee-modify.component.html',
   styleUrls: ['./referee-modify.component.css']
 })
-export class RefereeModifyComponent implements OnInit {
+export class RefereeModifyComponent implements OnInit, OnChanges {
 
   @Input()
+  refereeDetails : any;
   referee : any;
   licenses = [];
 
@@ -19,10 +20,20 @@ export class RefereeModifyComponent implements OnInit {
   ngOnInit(): void {
     this.refereeService.getRefereesLicenses()
         .subscribe(data => this.licenses = data);
-    console.log(this.licenses);
   }
 
   modifyReferee() {
-    this.refereeService.modifyReferee(this.referee).subscribe();
+    this.refereeService.modifyReferee(this.referee)
+        .subscribe(() => {
+
+        });
+      window.location.reload();
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    debugger;
+    if ('refereeDetails') {
+      this.referee =  Object.assign({}, this.refereeDetails);
+    }
   }
 }
