@@ -25,6 +25,8 @@ import { PrivilegesComponent } from './privileges/privileges.component';
 import { RefereeDetailsComponent } from './referee-details/referee-details.component';
 import { RefereeModifyComponent } from './referee-modify/referee-modify.component';
 import { AccountDetailsComponent } from './account-details/account-details.component';
+import { TeamComponent } from './team/team.component';
+import { TeamModalComponent } from './team-modal/team-modal.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -42,7 +44,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     PrivilegesComponent,
     RefereeDetailsComponent,
     RefereeModifyComponent,
-    AccountDetailsComponent
+    AccountDetailsComponent,
+    TeamComponent,
+    TeamModalComponent
   ],
   imports: [
     BrowserModule,

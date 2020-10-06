@@ -10,6 +10,7 @@ import {ErrorComponent} from './error/error.component';
 import {PrivilegesComponent} from './privileges/privileges.component';
 import {RefereeDetailsComponent} from './referee-details/referee-details.component';
 import {AccountDetailsComponent} from './account-details/account-details.component';
+import {TeamComponent} from './team/team.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -19,6 +20,7 @@ const routes: Routes = [
   { path: 'error', component: ErrorComponent },
   { path: 'noPrivileges', component: PrivilegesComponent },
   { path: 'account', component: AccountDetailsComponent },
+  { path: 'team', component: TeamComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

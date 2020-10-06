@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Account} from '../model/account';
 
-const URL = 'http://localhost:8080/';
+const URL = 'https://localhost:8443/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -15,16 +16,16 @@ export class AccountService {
 
   constructor(private http: HttpClient) { }
 
-  getMyAccount(): Observable<any> {
-    return this.http.get(URL + 'myaccount', httpOptions);
+  getMyAccount(): Observable<Account> {
+    return this.http.get<Account>(URL + 'myaccount', httpOptions);
   }
 
-  modifyMyAccount(account: any): Observable<any> {
-    return this.http.put(URL + 'account', account, httpOptions);
+  modifyMyAccount(account: Account): Observable<Account> {
+    return this.http.put<Account>(URL + 'account', account, httpOptions);
   }
 
-  changePassword(password: any): Observable<any> {
-    return this.http.post(URL + 'account/password', password, httpOptions);
+  changePassword(password: any): Observable<Account> {
+    return this.http.post<Account>(URL + 'account/password', password, httpOptions);
   }
 }
 

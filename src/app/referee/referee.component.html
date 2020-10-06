@@ -4,5 +4,7 @@
   <li *ngFor="let referee of referees">
     <span class="badge">{{referee.name}}</span> {{referee.surname}}
     <button class="btn-success" [routerLink] = "[referee.id]">{{'Referee details' | translate}}</button>
+    <button *ngIf="!referee.active" (click)="changeActiveStatus(referee)" class="btn-success">{{'Actived' | translate}}</button>
+    <button *ngIf="referee.active" (click)="changeActiveStatus(referee)" class="btn-danger">{{'Inactived' | translate}}</button>
   </li>
 </ul>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../_services/account.service';
+import {Account} from '../model/account';
 
 @Component({
   selector: 'app-account-details',
@@ -8,7 +9,7 @@ import {AccountService} from '../_services/account.service';
 })
 export class AccountDetailsComponent implements OnInit {
 
-  account: any = {};
+  account: Account;
   password: any = {};
 
   constructor(private accountService: AccountService) { }
@@ -17,20 +18,17 @@ export class AccountDetailsComponent implements OnInit {
     this.accountService.getMyAccount()
         .subscribe(data => this.account = data
         );
-    console.log(this.account);
   }
 
   changePassword(): void {
     this.accountService.changePassword(this.password)
         .subscribe();
-    window.location.reload();
-
+    this.password = {}
   }
 
   modifyMyAccount(): void {
     this.accountService.modifyMyAccount(this.account)
         .subscribe();
-    window.location.reload();
   }
 }
 

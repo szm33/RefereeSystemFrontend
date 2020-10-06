@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import {ModalService} from '../_services/modal.service';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 import {RefereeService} from '../_services/referee.service';
+import {Referee} from '../model/referee';
 
 @Component({
   selector: 'app-referee-modal',
@@ -11,7 +11,7 @@ import {RefereeService} from '../_services/referee.service';
 export class RefereeModalComponent {
 
   closeResult = '';
-  form: any = {};
+  form: Referee = new Referee();
 
   constructor(private modalService: NgbModal,
               private refereeService: RefereeService) {}

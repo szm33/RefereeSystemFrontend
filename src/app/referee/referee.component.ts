@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {RefereeService} from '../_services/referee.service';
+import {Referee} from '../model/referee';
 
 @Component({
   selector: 'app-referee',
@@ -8,7 +9,7 @@ import {RefereeService} from '../_services/referee.service';
 })
 export class RefereeComponent implements OnInit {
 
-  referees =  [];
+  referees: Referee[] =  [];
 
   constructor(private refereeService: RefereeService) { }
 
@@ -19,6 +20,12 @@ export class RefereeComponent implements OnInit {
         this.referees = data;
       }
     );
+  }
+
+  changeActiveStatus(referee: any): void {
+    this.refereeService.changeActiveStatus(referee.id)
+        .subscribe();
+    referee.active = !referee.active;
   }
 
 }

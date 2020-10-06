@@ -1,5 +1,8 @@
-import {Component, Input, OnChanges, OnInit, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges} from '@angular/core';
 import {RefereeService} from '../_services/referee.service';
+import {Referee} from '../model/referee';
+import {License} from '../model/license';
+import {BehaviorSubject, Observable, Subject} from 'rxjs';
 
 @Component({
   selector: 'app-referee-modify',
@@ -9,11 +12,14 @@ import {RefereeService} from '../_services/referee.service';
 export class RefereeModifyComponent implements OnInit, OnChanges {
 
   @Input()
-  refereeDetails : any;
-  referee : any;
-  licenses = [];
-
-  isChecked : boolean = false;
+  refereeDetails : Referee;
+  @Output() refereeDet: EventEmitter<Referee> = new EventEmitter();
+  referee : Referee;
+  licenses: License;
+  //
+  // ccc: Subject<boolean> = new BehaviorSubject(false);
+  // isCheckedd : Observable<boolean> =  this.ccc.asObservable();
+  isChecked: boolean = false;
 
   constructor(private refereeService : RefereeService) { }
 
@@ -25,15 +31,18 @@ export class RefereeModifyComponent implements OnInit, OnChanges {
   modifyReferee() {
     this.refereeService.modifyReferee(this.referee)
         .subscribe(() => {
-
         });
-      window.location.reload();
+    this.refereeDet.emit(this.referee);
+    this.isChecked = false;
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     debugger;
     if ('refereeDetails') {
       this.referee =  Object.assign({}, this.refereeDetails);
+    }
+    if ('isChecked'){
+      console.log("cos tam");
     }
   }
 }

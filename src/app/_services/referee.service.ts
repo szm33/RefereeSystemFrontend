@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
+import {Referee} from '../model/referee';
 
-const URL = 'http://localhost:8080/referee/';
+const URL = 'https://localhost:8443/referee/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -17,25 +18,28 @@ export class RefereeService {
   constructor(private http: HttpClient) {
   }
 
-  getAllReferee(): Observable<any> {
-    return this.http.get(URL, httpOptions);
+  getAllReferee(): Observable<Referee[]> {
+    return this.http.get<Referee[]>(URL, httpOptions);
 }
 
-  addReferee(referee: any): Observable<any> {
-    return this.http.post(URL, referee, httpOptions);
+  addReferee(referee: Referee): Observable<Referee> {
+    return this.http.post<Referee>(URL, referee, httpOptions);
   }
 
-  getReferee(id : String): Observable<any> {
-    return this.http.get(URL + id, httpOptions);
+  getReferee(id : String): Observable<Referee> {
+    return this.http.get<Referee>(URL + id, httpOptions);
   }
 
   getRefereesLicenses(): Observable<any> {
-    return this.http.get('http://localhost:8080/license', httpOptions);
+    return this.http.get<any>(URL + 'license', httpOptions);
   }
 
-  modifyReferee(referee: any): Observable<any> {
-    console.log(referee);
-    return this.http.put(URL, referee, httpOptions);
+  modifyReferee(referee: Referee): Observable<Referee> {
+    return this.http.put<Referee>(URL, referee, httpOptions);
+  }
+
+  changeActiveStatus(id: String): Observable<any> {
+    return this.http.post(URL + id + '/active', null, httpOptions);
   }
 
 }

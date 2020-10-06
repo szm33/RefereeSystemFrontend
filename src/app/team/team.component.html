@@ -1,0 +1,7 @@
+<h2>Teams</h2>
+<app-team-modal></app-team-modal>
+<ul>
+    <li *ngFor="let team of teams">
+        <span class="badge">{{team.name}}</span> {{team.league}}
+    </li>
+</ul>

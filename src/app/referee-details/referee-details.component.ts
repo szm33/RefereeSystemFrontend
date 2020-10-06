@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {RefereeService} from '../_services/referee.service';
+import {Referee} from '../model/referee';
 
 
 @Component({
@@ -10,7 +11,7 @@ import {RefereeService} from '../_services/referee.service';
 })
 export class RefereeDetailsComponent implements OnInit {
 
-  referee : any =  {};
+  referee: Referee;
 
   constructor(private route : ActivatedRoute,
               private refereeService : RefereeService) { }
@@ -18,6 +19,11 @@ export class RefereeDetailsComponent implements OnInit {
   ngOnInit(): void {
       this.refereeService.getReferee(this.route.snapshot.params["id"])
           .subscribe(data => this.referee = data);
+  }
+
+  modify(event: Referee) {
+    debugger;
+     this.referee = event;
   }
 
 }
