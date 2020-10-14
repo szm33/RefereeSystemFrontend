@@ -18,12 +18,8 @@ export class RefereeDetailsComponent implements OnInit {
 
   ngOnInit(): void {
       this.refereeService.getReferee(this.route.snapshot.params["id"])
-          .subscribe(data => this.referee = data);
-  }
-
-  modify(event: Referee) {
-    debugger;
-     this.referee = event;
-  }
-
+          .subscribe(data => {this.referee = data;
+          console.log(data);
+          console.log(this.referee);});
+        }
 }

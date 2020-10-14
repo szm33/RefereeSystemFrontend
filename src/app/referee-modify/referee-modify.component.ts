@@ -13,12 +13,8 @@ export class RefereeModifyComponent implements OnInit, OnChanges {
 
   @Input()
   refereeDetails : Referee;
-  @Output() refereeDet: EventEmitter<Referee> = new EventEmitter();
   referee : Referee;
   licenses: License;
-  //
-  // ccc: Subject<boolean> = new BehaviorSubject(false);
-  // isCheckedd : Observable<boolean> =  this.ccc.asObservable();
   isChecked: boolean = false;
 
   constructor(private refereeService : RefereeService) { }
@@ -30,19 +26,23 @@ export class RefereeModifyComponent implements OnInit, OnChanges {
 
   modifyReferee() {
     this.refereeService.modifyReferee(this.referee)
-        .subscribe(() => {
-        });
-    this.refereeDet.emit(this.referee);
-    this.isChecked = false;
+        .subscribe(() => {this.isChecked = false;
+        this.refereeDetails.license = this.referee.license;
+        this.refereeDetails.name = this.referee.name;
+        this.refereeDetails.surname = this.referee.surname;
+        this.refereeDetails.email = this.referee.email;},
+            () => {});
+  }
+
+  modify() {
+    debugger;
+
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     debugger;
     if ('refereeDetails') {
       this.referee =  Object.assign({}, this.refereeDetails);
-    }
-    if ('isChecked'){
-      console.log("cos tam");
     }
   }
 }

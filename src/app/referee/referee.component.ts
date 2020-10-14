@@ -24,8 +24,8 @@ export class RefereeComponent implements OnInit {
 
   changeActiveStatus(referee: any): void {
     this.refereeService.changeActiveStatus(referee.id)
-        .subscribe();
-    referee.active = !referee.active;
+        .subscribe(result => {referee.active = !referee.active;},
+            () => {}
+       );
   }
-
 }

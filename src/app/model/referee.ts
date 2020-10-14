@@ -6,4 +6,5 @@ export class Referee {
     email: String;
     id: number;
     version: number;
+    accoutnVersion: number;
 }

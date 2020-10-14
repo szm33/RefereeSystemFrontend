@@ -22,8 +22,9 @@ export class AccountDetailsComponent implements OnInit {
 
   changePassword(): void {
     this.accountService.changePassword(this.password)
-        .subscribe();
-    this.password = {}
+        .subscribe(() => this.password = {},
+            () => {});
+
   }
 
   modifyMyAccount(): void {
