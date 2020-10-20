@@ -36,6 +36,7 @@ export class RefereeModalComponent {
   }
 
   public addReferee(): void {
-    this.refereeService.addReferee(this.form).subscribe();
+    this.refereeService.addReferee(this.form).subscribe(()=> window.alert("added successfully"),
+        ()=> {});
   }
 }

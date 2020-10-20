@@ -5,6 +5,7 @@ export class Referee {
     license: String;
     email: String;
     id: number;
+    active: boolean;
     version: number;
     accoutnVersion: number;
 }

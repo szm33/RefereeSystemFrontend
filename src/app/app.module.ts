@@ -27,6 +27,8 @@ import { RefereeModifyComponent } from './referee-modify/referee-modify.componen
 import { AccountDetailsComponent } from './account-details/account-details.component';
 import { TeamComponent } from './team/team.component';
 import { TeamModalComponent } from './team-modal/team-modal.component';
+import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { SendResetPasswordComponent } from './send-reset-password/send-reset-password.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -46,7 +48,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     RefereeModifyComponent,
     AccountDetailsComponent,
     TeamComponent,
-    TeamModalComponent
+    TeamModalComponent,
+    ResetPasswordComponent,
+    SendResetPasswordComponent
   ],
   imports: [
     BrowserModule,

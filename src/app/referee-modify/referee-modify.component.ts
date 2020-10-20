@@ -30,7 +30,8 @@ export class RefereeModifyComponent implements OnInit, OnChanges {
         this.refereeDetails.license = this.referee.license;
         this.refereeDetails.name = this.referee.name;
         this.refereeDetails.surname = this.referee.surname;
-        this.refereeDetails.email = this.referee.email;},
+        this.refereeDetails.email = this.referee.email;
+        window.alert("modify successfully")},
             () => {});
   }
 

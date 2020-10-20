@@ -27,5 +27,17 @@ export class AccountService {
   changePassword(password: any): Observable<Account> {
     return this.http.post<Account>(URL + 'account/password', password, httpOptions);
   }
+
+  sendResetLink(username: String): Observable<any> {
+    return this.http.get(URL + 'account/reset/' + username, httpOptions);
+  }
+
+  validateLink(link: String): Observable<any> {
+    return this.http.get(URL + 'validate/' + link, httpOptions);
+  }
+
+  resetPassword(password: any): Observable<any> {
+    return this.http.post(URL + 'account/reset', password, httpOptions);
+  }
 }
 

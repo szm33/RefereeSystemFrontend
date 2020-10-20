@@ -22,14 +22,16 @@ export class AccountDetailsComponent implements OnInit {
 
   changePassword(): void {
     this.accountService.changePassword(this.password)
-        .subscribe(() => this.password = {},
+        .subscribe(() => {this.password = {};
+        window.alert("password change successfully");},
             () => {});
 
   }
 
   modifyMyAccount(): void {
     this.accountService.modifyMyAccount(this.account)
-        .subscribe();
+        .subscribe(() => window.alert("modify successfully"),
+            () => {});
   }
 }
 

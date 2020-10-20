@@ -11,6 +11,8 @@ import {PrivilegesComponent} from './privileges/privileges.component';
 import {RefereeDetailsComponent} from './referee-details/referee-details.component';
 import {AccountDetailsComponent} from './account-details/account-details.component';
 import {TeamComponent} from './team/team.component';
+import {ResetPasswordComponent} from './reset-password/reset-password.component';
+import {SendResetPasswordComponent} from './send-reset-password/send-reset-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -21,6 +23,8 @@ const routes: Routes = [
   { path: 'noPrivileges', component: PrivilegesComponent },
   { path: 'account', component: AccountDetailsComponent },
   { path: 'team', component: TeamComponent },
+  { path: 'reset', component: SendResetPasswordComponent },
+  { path: 'reset/:link', component: ResetPasswordComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];

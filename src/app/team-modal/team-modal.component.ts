@@ -43,7 +43,10 @@ export class TeamModalComponent implements OnInit {
 
   public addTeam(): void {
     console.log(this.form);
-    this.teamService.addTeam(this.form).subscribe();
+    this.teamService.addTeam(this.form).subscribe(
+        ()=> window.alert("added successfully"),
+        ()=> {}
+    );
   }
 
 }
