@@ -1,0 +1,7 @@
+<h1>Edit team</h1>
+<label for="name">Name</label>
+<input id="name" class="form-control" placeholder="name" [(ngModel)]="team.name">
+<select id="license" [(ngModel)]="team.league">
+    <option *ngFor="let league of leagues" [value]="league.name">{{ league.name }}</option>
+</select>
+<button (click)="editTeam()">edit</button>

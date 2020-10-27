@@ -13,6 +13,7 @@ import {AccountDetailsComponent} from './account-details/account-details.compone
 import {TeamComponent} from './team/team.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {SendResetPasswordComponent} from './send-reset-password/send-reset-password.component';
+import {TeamEditComponent} from './team-edit/team-edit.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'noPrivileges', component: PrivilegesComponent },
   { path: 'account', component: AccountDetailsComponent },
   { path: 'team', component: TeamComponent },
+  { path: 'team/:id', component: TeamEditComponent },
   { path: 'reset', component: SendResetPasswordComponent },
   { path: 'reset/:link', component: ResetPasswordComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },

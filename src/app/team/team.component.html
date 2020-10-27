@@ -3,5 +3,6 @@
 <ul>
     <li *ngFor="let team of teams">
         <span class="badge">{{team.name}}</span> {{team.league}}
+        <button class="btn-success" [routerLink]="team.id">Edit team</button>
     </li>
 </ul>

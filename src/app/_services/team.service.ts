@@ -21,11 +21,19 @@ export class TeamService {
     return this.http.get<Team[]>(URL, httpOptions);
   }
 
+  getTeam(id: number): Observable<Team> {
+    return this.http.get<Team>(URL + id, httpOptions);
+  }
+
   addTeam(team: any): Observable<Team> {
     return this.http.post<Team>(URL, team, httpOptions);
   }
 
   getAllLeagues(): Observable<League[]> {
     return this.http.get<League[]>(URL + 'league', httpOptions);
+  }
+
+  editTeam(team: Team): Observable<any> {
+    return this.http.put(URL, team, httpOptions);
   }
 }
