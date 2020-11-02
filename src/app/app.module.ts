@@ -30,6 +30,13 @@ import { TeamModalComponent } from './team-modal/team-modal.component';
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { SendResetPasswordComponent } from './send-reset-password/send-reset-password.component';
 import { TeamEditComponent } from './team-edit/team-edit.component';
+import { MatchComponent } from './match/match.component';
+import { MatchCreateComponent } from './match-create/match-create.component';
+import { MatchDetailsComponent } from './match-details/match-details.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatSliderModule} from '@angular/material/slider';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {MatNativeDateModule} from '@angular/material/core';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -52,7 +59,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     TeamModalComponent,
     ResetPasswordComponent,
     SendResetPasswordComponent,
-    TeamEditComponent
+    TeamEditComponent,
+    MatchComponent,
+    MatchCreateComponent,
+    MatchDetailsComponent
   ],
   imports: [
     BrowserModule,
@@ -60,13 +70,17 @@ export function HttpLoaderFactory(http: HttpClient) {
     FormsModule,
     HttpClientModule,
     NgbModule,
+    MatSliderModule,
+    MatDatepickerModule,
+    MatNativeDateModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    BrowserAnimationsModule
   ],
   providers: [authInterceptorProviders, errorInterceptorProviders],
   bootstrap: [AppComponent]

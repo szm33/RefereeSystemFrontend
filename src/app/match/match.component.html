@@ -1,0 +1,46 @@
+<button class="btn-success" routerLink = "create">{{'Create match' | translate}}</button>
+
+<div *ngFor="let match of matches">
+    <div> {{match.dateOfMatch | date}}</div>
+    <div *ngIf="match.teams && match.teams.length == 2">
+        <div *ngIf="match.teams[0].guest">
+            <div>
+                {{match.teams[1].name}} :
+                {{match.teams[0].name}}
+            </div>
+        </div>
+        <div *ngIf="match.teams[1].guest">
+            <div>
+                {{match.teams[0].name}} :
+                {{match.teams[1].name}}
+            </div>
+        </div>
+    </div>
+
+
+    <div *ngIf="match.isClicked">
+        <br>
+        <div *ngIf="match.teams && match.teams.length == 2">
+            <div *ngIf="match.teams[0].guest">
+                <div>
+                    {{match.teams[1].name}}                  :                  {{match.teams[0].name}}
+                </div>
+            </div>
+            <div *ngIf="match.teams[1].guest">
+                <div>
+                    {{match.teams[0].name}}                  :                  {{match.teams[1].name}}
+                </div>
+            </div>
+        </div>
+        {{match.homeScore}}                  :                  {{match.awayScore}}
+
+        <div>Date: {{match.dateOfMatch | date}}</div>
+        <div *ngFor="let referee of match.referees">
+            <div>{{referee.function}}:    {{referee.name}} {{referee.surname}}</div>
+        </div>
+        <div>Description: {{match.description}}</div>
+    </div>
+    <button class="btn-success" (click)="show(match)" >Show/Hide</button>
+    <br>
+    <br>
+</div>

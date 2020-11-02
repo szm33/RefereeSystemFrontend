@@ -16,7 +16,9 @@ export class AccountDetailsComponent implements OnInit {
 
   ngOnInit(): void {
     this.accountService.getMyAccount()
-        .subscribe(data => this.account = data
+        .subscribe(data => {this.account = data;
+        console.log(this.account);},
+            () => {}
         );
   }
 
