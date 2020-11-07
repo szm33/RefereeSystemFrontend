@@ -1,5 +1,3 @@
-<button class="btn-success" routerLink = "create">{{'Create match' | translate}}</button>
-
 <div *ngFor="let match of matches">
     <div> {{match.dateOfMatch | date}}</div>
     <div *ngIf="match.teams && match.teams.length == 2">
@@ -41,6 +39,7 @@
         <div>Description: {{match.description}}</div>
     </div>
     <button class="btn-success" (click)="show(match)" >Show/Hide</button>
+    <button class="btn-info"  [routerLink]="'details/' + match.id">Edit</button>
     <br>
     <br>
 </div>

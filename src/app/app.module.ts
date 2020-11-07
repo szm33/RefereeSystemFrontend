@@ -37,6 +37,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { AllMatchComponent } from './all-match/all-match.component';
+import { RefereeMatchesComponent } from './referee-matches/referee-matches.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -62,7 +64,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     TeamEditComponent,
     MatchComponent,
     MatchCreateComponent,
-    MatchDetailsComponent
+    MatchDetailsComponent,
+    AllMatchComponent,
+    RefereeMatchesComponent
   ],
   imports: [
     BrowserModule,

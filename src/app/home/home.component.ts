@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../_services/auth.service';
+import {Match} from '../model/match';
+import {MatchService} from '../_services/match.service';
 
 @Component({
   selector: 'app-home',
@@ -9,23 +11,18 @@ import {AuthService} from '../_services/auth.service';
 export class HomeComponent implements OnInit {
 
   content: string;
-  locale: string;
+  matches: Match[];
 
-  constructor(private authService: AuthService) { }
+
+  constructor(private matchService: MatchService) { }
 
   ngOnInit(): void {
-    // this.userService.getPublicContent().subscribe(
-    //   data => {
-    //     this.content = data;
-    //   },
-    //   err => {
-    //     this.content = JSON.parse(err.error).message;
-    //   }
-    // );
   }
 
-  getLocale() {
-    this.authService.locale().subscribe(data => this.locale = data);
+  getMyMatches(): void {
+    this.matchService.getMyMatches()
+        .subscribe(data => this.matches = data,
+            () => {});
   }
 
 }

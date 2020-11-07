@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {MatchService} from '../_services/match.service';
 import {Match} from '../model/match';
 
@@ -9,18 +9,13 @@ import {Match} from '../model/match';
 })
 export class MatchComponent implements OnInit {
 
+  @Input()
   matches: Match[];
 
 
-  constructor(private matchService: MatchService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.matchService.getAllMatchers().subscribe(
-        data => {this.matches = data;
-        debugger;
-    console.log(this.matches);},
-        () => {} );
-    console.log(this.matches);
   }
 
   show(match: Match): void {

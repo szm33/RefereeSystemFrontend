@@ -23,12 +23,14 @@ export class MatchCreateComponent implements OnInit {
     debugger;
     this.freeTeams = [];
     this.freeReferees = [];
+    this.match.dateOfMatch = null;
     if(event.value != null) {
       this.matchService.getFreeTeamsAndReferees(event.value).subscribe(data => {
         debugger;
         this.freeReferees.push(new Referee());
         data.referees.forEach(referee => this.freeReferees.push(referee));
         data.teams.forEach(team => this.freeTeams.push(team));
+        this.match.dateOfMatch = event.value;
       });
     }
   }

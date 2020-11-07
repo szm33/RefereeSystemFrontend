@@ -9,15 +9,14 @@ import {Account} from '../model/account';
 })
 export class AccountDetailsComponent implements OnInit {
 
-  account: Account;
+  account: Account = new Account();
   password: any = {};
 
   constructor(private accountService: AccountService) { }
 
   ngOnInit(): void {
     this.accountService.getMyAccount()
-        .subscribe(data => {this.account = data;
-        console.log(this.account);},
+        .subscribe(data => {this.account = data;},
             () => {}
         );
   }

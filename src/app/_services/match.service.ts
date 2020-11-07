@@ -32,4 +32,17 @@ export class MatchService {
   getAllFunctions(): Observable<MatchFunction[]>{
     return this.http.get<MatchFunction[]>(URL + 'functions', httpOptions);
   }
+
+  getRefereeMatches(id: number): Observable<Match[]> {
+    return this.http.get<Match[]>(URL + 'referee/' + id, httpOptions);
+  }
+
+  getMyMatches(): Observable<Match[]> {
+    return this.http.get<Match[]>(URL + 'my', httpOptions);
+  }
+
+  editMatch(match: Match): Observable<any> {
+    return this.http.put(URL, match, httpOptions);
+  }
+
 }

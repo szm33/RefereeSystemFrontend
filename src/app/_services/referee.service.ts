@@ -41,6 +41,5 @@ export class RefereeService {
   changeActiveStatus(id: String): Observable<any> {
     return this.http.post(URL + id + '/active', null, httpOptions);
   }
-
 }
 

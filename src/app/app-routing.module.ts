@@ -14,8 +14,10 @@ import {TeamComponent} from './team/team.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
 import {SendResetPasswordComponent} from './send-reset-password/send-reset-password.component';
 import {TeamEditComponent} from './team-edit/team-edit.component';
-import {MatchComponent} from './match/match.component';
 import {MatchCreateComponent} from './match-create/match-create.component';
+import {AllMatchComponent} from './all-match/all-match.component';
+import {RefereeMatchesComponent} from './referee-matches/referee-matches.component';
+import {MatchDetailsComponent} from './match-details/match-details.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -27,7 +29,9 @@ const routes: Routes = [
   { path: 'account', component: AccountDetailsComponent },
   { path: 'team', component: TeamComponent },
   { path: 'team/:id', component: TeamEditComponent },
-  { path: 'match', component: MatchComponent },
+  { path: 'match', component: AllMatchComponent },
+  { path: 'match/details/:id', component: MatchDetailsComponent },
+  { path: 'match/referee/:id', component: RefereeMatchesComponent },
   { path: 'match/create', component: MatchCreateComponent },
   { path: 'reset', component: SendResetPasswordComponent },
   { path: 'reset/:link', component: ResetPasswordComponent },
