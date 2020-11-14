@@ -17,7 +17,7 @@ import {TeamEditComponent} from './team-edit/team-edit.component';
 import {MatchCreateComponent} from './match-create/match-create.component';
 import {AllMatchComponent} from './all-match/all-match.component';
 import {RefereeMatchesComponent} from './referee-matches/referee-matches.component';
-import {MatchDetailsComponent} from './match-details/match-details.component';
+import {MatchModifyComponent} from './match-modify/match-modify.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -30,7 +30,7 @@ const routes: Routes = [
   { path: 'team', component: TeamComponent },
   { path: 'team/:id', component: TeamEditComponent },
   { path: 'match', component: AllMatchComponent },
-  { path: 'match/details/:id', component: MatchDetailsComponent },
+  { path: 'match/modify/:id', component: MatchModifyComponent },
   { path: 'match/referee/:id', component: RefereeMatchesComponent },
   { path: 'match/create', component: MatchCreateComponent },
   { path: 'reset', component: SendResetPasswordComponent },

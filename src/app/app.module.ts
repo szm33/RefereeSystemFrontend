@@ -36,13 +36,28 @@ import { MatchDetailsComponent } from './match-details/match-details.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {MatNativeDateModule} from '@angular/material/core';
+import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import { AllMatchComponent } from './all-match/all-match.component';
 import { RefereeMatchesComponent } from './referee-matches/referee-matches.component';
+import { MatchModifyComponent } from './match-modify/match-modify.component';
+import {MomentDateAdapter} from '@angular/material-moment-adapter';
+import {MatSelectModule} from '@angular/material/select';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
+export const DateFormats = {
+  parse: {
+    dateInput: ['YYYY-MM-DD']
+  },
+  display: {
+    dateInput: 'YYYY-MM-DD',
+    monthYearLabel: 'MMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY',
+  },
+};
 
 @NgModule({
   declarations: [
@@ -66,7 +81,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatchCreateComponent,
     MatchDetailsComponent,
     AllMatchComponent,
-    RefereeMatchesComponent
+    RefereeMatchesComponent,
+    MatchModifyComponent
   ],
   imports: [
     BrowserModule,
@@ -77,6 +93,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatSliderModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatSelectModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -86,8 +103,9 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     BrowserAnimationsModule
   ],
-  providers: [authInterceptorProviders, errorInterceptorProviders],
+  providers: [authInterceptorProviders, errorInterceptorProviders,
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: DateFormats }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-

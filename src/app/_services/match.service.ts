@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Match} from '../model/match';
 import {MatchFunction} from '../model/matchFunction';
+import {MatchModify} from '../model/matchModify';
 
 const URL = 'https://localhost:8443/match/';
 
@@ -25,7 +26,7 @@ export class MatchService {
     return this.http.post(URL, match, httpOptions);
   }
 
-  getFreeTeamsAndReferees(date: Date): Observable<any> {
+  getFreeTeamsAndReferees(date: any): Observable<any> {
     return this.http.post(URL + 'free/referees-teams', date, httpOptions);
   }
 
@@ -41,8 +42,12 @@ export class MatchService {
     return this.http.get<Match[]>(URL + 'my', httpOptions);
   }
 
-  editMatch(match: Match): Observable<any> {
+  editMatch(match: MatchModify): Observable<any> {
     return this.http.put(URL, match, httpOptions);
+  }
+
+  getMatch(id: number): Observable<any> {
+    return this.http.get<any>(URL + id, httpOptions);
   }
 
 }
