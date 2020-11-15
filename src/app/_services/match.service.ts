@@ -50,4 +50,8 @@ export class MatchService {
     return this.http.get<any>(URL + id, httpOptions);
   }
 
+  replaceReferee(matchId: number): Observable<any> {
+    return this.http.post(URL + 'replace/' + matchId,{}, httpOptions);
+  }
+
 }

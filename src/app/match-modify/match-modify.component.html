@@ -1,0 +1,26 @@
+<label for="date">Date of match</label>
+<div id="date">{{match.dateOfMatch | date}} change to: </div>
+<input matInput [matDatepicker]="picker" (dateChange)="pickDateOfMatch($event)" readonly="readonly">
+<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker>
+<label for="homeTeam">Home Team</label>
+<div id="homeTeam">{{match.homeTeam.name}}
+</div>
+<label for="awayTeam">Away Team</label>
+<div id="awayTeam">{{match.awayTeam.name}}</div>
+<!--{{refereeFunction.value == null ? 'empty' : refereeFunction.value.name + ' ' + refereeFunction.value.surname}}-->
+    <div *ngFor="let refereeFunction of match.functions">
+
+        <div>
+            {{refereeFunction}} : {{getRefereeName(refereeFunction)}} change to
+            <mat-form-field appearance="fill">
+                <mat-label>Choose an option</mat-label>
+                <mat-select (selectionChange)="selectReferee($event, refereeFunction)">
+                    <mat-option *ngFor="let referee of freeReferees" [value]="referee">{{referee.name}} {{referee.surname}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <label for="description">Description</label>
+    <input id="description" type="text" [(ngModel)]="match.description">
+    <button  (click)="modifyMatch()">Modify</button>

@@ -11,15 +11,21 @@ export class MatchComponent implements OnInit {
 
   @Input()
   matches: Match[];
+  @Input()
+  isMyMatches: boolean = false;
 
 
-  constructor() { }
+  constructor(private matchService: MatchService) { }
 
   ngOnInit(): void {
   }
 
   show(match: Match): void {
     match.isClicked = !match.isClicked;
+  }
+
+  replaceReferee(matchId: number) {
+    this.matchService.replaceReferee(matchId).subscribe(() => {} , () => {});
   }
 
 }
