@@ -1,0 +1,5 @@
+<div> {{matchInfo.dateOfMatch | date :'medium'}}</div>
+<div> {{matchInfo.description}}</div>
+<label for="arrivalTime">Arrival Time</label>
+<input id="arrivalTime" type="number" [(ngModel)]="arrivalTime.arrivalTime">
+<button class="btn-success" (click)="sendArrivalTime()">Send</button>

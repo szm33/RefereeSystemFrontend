@@ -4,6 +4,7 @@ import {Observable} from 'rxjs';
 import {Match} from '../model/match';
 import {MatchFunction} from '../model/matchFunction';
 import {MatchModify} from '../model/matchModify';
+import {ArrivalTime, MatchToReplaceInformations} from '../arrival-time-picker/arrival-time-picker.component';
 
 const URL = 'https://localhost:8443/match/';
 
@@ -52,6 +53,14 @@ export class MatchService {
 
   replaceReferee(matchId: number): Observable<any> {
     return this.http.post(URL + 'replace/' + matchId,{}, httpOptions);
+  }
+
+  getReplaceInformations(id: number): Observable<MatchToReplaceInformations> {
+    return this.http.get<MatchToReplaceInformations>(URL + 'arrivalTime/' + id, httpOptions);
+  }
+
+  sendArrivalTime(arrivalTime: ArrivalTime): Observable<any> {
+    return this.http.post(URL + 'arrivalTime', arrivalTime, httpOptions);
   }
 
 }

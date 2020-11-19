@@ -18,6 +18,7 @@ import {MatchCreateComponent} from './match-create/match-create.component';
 import {AllMatchComponent} from './all-match/all-match.component';
 import {RefereeMatchesComponent} from './referee-matches/referee-matches.component';
 import {MatchModifyComponent} from './match-modify/match-modify.component';
+import {ArrivalTimePickerComponent} from './arrival-time-picker/arrival-time-picker.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -36,6 +37,7 @@ const routes: Routes = [
   { path: 'reset', component: SendResetPasswordComponent },
   { path: 'reset/:link', component: ResetPasswordComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },
+  { path: 'replace/:id', component: ArrivalTimePickerComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 

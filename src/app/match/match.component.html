@@ -40,7 +40,7 @@
     </div>
     <button class="btn-success" (click)="show(match)" >Show/Hide</button>
     <button class="btn-info"  [routerLink]="'modify/' + match.id">Edit</button>
-    <button class="btn-danger" (click)="replaceReferee(match.id)">Replace me</button>
+    <button *ngIf="isMyMatches" class="btn-danger" (click)="replaceReferee(match.id)">Replace me</button>
     <br>
     <br>
 </div>

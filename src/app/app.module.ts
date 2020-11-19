@@ -42,6 +42,7 @@ import { RefereeMatchesComponent } from './referee-matches/referee-matches.compo
 import { MatchModifyComponent } from './match-modify/match-modify.component';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
+import { ArrivalTimePickerComponent } from './arrival-time-picker/arrival-time-picker.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -82,7 +83,8 @@ export const DateFormats = {
     MatchDetailsComponent,
     AllMatchComponent,
     RefereeMatchesComponent,
-    MatchModifyComponent
+    MatchModifyComponent,
+    ArrivalTimePickerComponent
   ],
   imports: [
     BrowserModule,

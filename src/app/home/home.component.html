@@ -1,5 +1,5 @@
 <div class="container">
   <h1>Welcome</h1>
   <button *ngIf="!matches" (click)="getMyMatches()">My matches</button>
-  <app-match [matches]="matches" *ngIf="matches"></app-match>
+  <app-match [matches]="matches" [isMyMatches]="true" *ngIf="matches"></app-match>
 </div>
