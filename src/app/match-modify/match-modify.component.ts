@@ -17,6 +17,7 @@ export class MatchModifyComponent implements OnInit {
     matchFunctions: Map<String, Referee> = new Map();
     date: any;
     blankReferee: Referee = new Referee();
+    c:any;
     // matchFunctionsList: String[];
 
     constructor(private matchService: MatchService,
@@ -32,6 +33,8 @@ export class MatchModifyComponent implements OnInit {
                     this.match = data;
                     this.match.functions.forEach(matchFunction => this.matchFunctions.set(matchFunction, null));
                     this.match.referees.forEach(referee => this.matchFunctions.set(referee.function, referee));
+                    this.match.timeOfMatch = data.timeOfMatch;
+                    // this.match.timeOfMatch = this.match.timeOfMatch[0] + ':' + this.match.timeOfMatch[1];
                     this.matchService.getFreeTeamsAndReferees(this.match.dateOfMatch).subscribe(data => {
                         this.freeReferees.push(new Referee());
                         this.freeReferees.push(this.blankReferee);
@@ -47,7 +50,7 @@ export class MatchModifyComponent implements OnInit {
     pickDateOfMatch(event) {
         var date = [];
         date.push(event.value.toArray()[0]);
-        date.push(event.value.toArray()[1]);
+        date.push(event.value.toArray()[1] + 1);
         date.push(event.value.toArray()[2]);
         if(event.value != null && (event.value.toArray()[0] != this.match.dateOfMatch[0] || event.value.toArray()[1] + 1 != this.match.dateOfMatch[1] || event.value.toArray()[2] != this.match.dateOfMatch[2])) {
             this.matchService.getFreeTeamsAndReferees(date).subscribe(data => {
@@ -97,11 +100,12 @@ export class MatchModifyComponent implements OnInit {
     }
 
     modifyMatch() {
+        console.log(this.match.timeOfMatch);
         debugger;
         if (this.date != null) {
             this.match.dateOfMatch = [];
             this.match.dateOfMatch.push(this.date.toArray()[0]);
-            this.match.dateOfMatch.push(this.date.toArray()[1]);
+            this.match.dateOfMatch.push(this.date.toArray()[1] + 1);
             this.match.dateOfMatch.push(this.date.toArray()[2]);
         }
         this.match.referees.forEach(referee => {

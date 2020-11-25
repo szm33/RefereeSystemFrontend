@@ -1,31 +1,58 @@
-<!--<form #form>-->
-    <label for="date">Date of match</label>
-    <input id="date" matInput [matDatepicker]="picker" [(ngModel)]="match.dateOfMatch"
-           (dateChange)="pickDateOfMatch($event)" required #date="ngModel">
-    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-    <mat-datepicker #picker></mat-datepicker>
-    <div *ngIf="match.dateOfMatch != null">
-        <label for="homeTeam">Home Team</label>
-        <select id="homeTeam" ngModel (ngModelChange)="selectTeam($event, false)" required #home="ngModel">
-            <option *ngFor="let team of freeTeams" [ngValue]="team">{{ team.name }}</option>
-        </select>
-        <label for="awayTeam">Away Team</label>
-        <select id="awayTeam" ngModel (ngModelChange)="selectTeam($event, true)" required #away="ngModel">
-            <option *ngFor="let team1 of freeTeams" [ngValue]="team1">{{ team1.name }}</option>
-        </select>
-        <div *ngFor="let function of matchFunctions.keys()">
-            <div>
-                {{function.functionName}} :
-                <select ngModel (ngModelChange)="selectReferee($event, function)">
-                    <option *ngFor="let referee of freeReferees"
-                            [ngValue]="referee">{{ referee.name }} {{referee.surname}}</option>
-                </select>
-            </div>
-        </div>
-        <label for="description">Description</label>
-        <input id="description" type="text" [(ngModel)]="match.description">
-        <button [disabled]="date.invalid || away.invalid || home.invalid" (click)="createMatch()">Create</button>
+<label for="date">Date of match</label>
+<input id="date" matInput [matDatepicker]="picker" [(ngModel)]="date"
+       (dateChange)="pickDateOfMatch($event)" required #dateForm="ngModel">
+<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+<mat-datepicker #picker></mat-datepicker>
+
+<div *ngIf="date != null">
+
+    <label for="time">Time of match</label>
+    <div id="time" class="ngx-timepicker-field-example">
+        <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"></ngx-timepicker-field>
     </div>
-<!--</form>-->
-<!--<div>{{form.checkValidity()}}</div>-->
+
+    <label>Home Team</label>
+    <mat-form-field appearance="fill">
+        <mat-label>Choose an option</mat-label>
+        <mat-select (selectionChange)="selectTeam($event, false)">
+            <mat-option *ngFor="let team of freeTeams" [value]="team">{{team.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+
+<!--    <select id="homeTeam" ngModel (ngModelChange)="selectTeam($event, false)" required #home="ngModel">-->
+<!--        <option *ngFor="let team of freeTeams" [ngValue]="team">{{ team.name }}</option>-->
+<!--    </select>-->
+    <label>Away Team</label>
+
+    <mat-form-field appearance="fill">
+        <mat-label>Choose an option</mat-label>
+        <mat-select (selectionChange)="selectTeam($event, true)">
+            <mat-option *ngFor="let team of freeTeams" [value]="team">{{team.name}}</mat-option>
+        </mat-select>
+    </mat-form-field>
+
+<!--    <select id="awayTeam" ngModel (ngModelChange)="selectTeam($event, true)" required #away="ngModel">-->
+<!--        <option *ngFor="let team1 of freeTeams" [ngValue]="team1">{{ team1.name }}</option>-->
+<!--    </select>-->
+    <div *ngFor="let function of matchFunctions.keys()">
+        <div>
+            {{function.functionName}} :
+            <mat-form-field appearance="fill">
+                <mat-label>Choose an option</mat-label>
+                <mat-select (selectionChange)="selectReferee($event, function)">
+                    <mat-option *ngFor="let referee of freeReferees" [value]="referee">{{referee.name}} {{referee.surname}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+<!--            <select ngModel (ngModelChange)="selectReferee($event, function)">-->
+<!--                <option *ngFor="let referee of freeReferees"-->
+<!--                        [ngValue]="referee">{{ referee.name }} {{referee.surname}}</option>-->
+<!--            </select>-->
+        </div>
+    </div>
+    <label for="description">Description</label>
+    <input id="description" type="text" [(ngModel)]="match.description">
+    <button [disabled]="dateForm.invalid" (click)="createMatch()">Create</button>
+<!--    <button [disabled]="dateForm.invalid || away.invalid || home.invalid" (click)="createMatch()">Create</button>-->
+</div>
 

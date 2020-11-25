@@ -3,6 +3,12 @@
 <input matInput [matDatepicker]="picker" (dateChange)="pickDateOfMatch($event)" readonly="readonly">
 <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
 <mat-datepicker #picker></mat-datepicker>
+<br/>
+<label for="time">Time of match</label>
+<div id="time" class="ngx-timepicker-field-example">
+    <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"></ngx-timepicker-field>
+</div>
+
 <label for="homeTeam">Home Team</label>
 <div id="homeTeam">{{match.homeTeam.name}}
 </div>

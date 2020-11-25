@@ -43,6 +43,7 @@ import { MatchModifyComponent } from './match-modify/match-modify.component';
 import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import { ArrivalTimePickerComponent } from './arrival-time-picker/arrival-time-picker.component';
+import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -84,7 +85,7 @@ export const DateFormats = {
     AllMatchComponent,
     RefereeMatchesComponent,
     MatchModifyComponent,
-    ArrivalTimePickerComponent
+    ArrivalTimePickerComponent,
   ],
   imports: [
     BrowserModule,
@@ -96,6 +97,7 @@ export const DateFormats = {
     MatDatepickerModule,
     MatNativeDateModule,
     MatSelectModule,
+    NgxMaterialTimepickerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

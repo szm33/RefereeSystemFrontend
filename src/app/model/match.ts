@@ -3,7 +3,7 @@ import {Team} from './team';
 
 export class Match {
 
-    dateOfMatch: Date;
+    dateOfMatch: any;
     isClicked: boolean = false;
     description: String;
     homeScore: number;
@@ -14,4 +14,5 @@ export class Match {
     version: String;
     homeTeamId: number;
     awayTeamId: number;
+    timeOfMatch: String;
 }
