@@ -21,13 +21,6 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
-    this.isLoggedIn = !!this.tokenStorageService.getToken();
-
-    if (this.isLoggedIn) {
-      const user = this.tokenStorageService.getUser();
-      this.username = user.username;
-    }
     this.authService.locale().subscribe(
       data => {
         console.log(data);
@@ -36,7 +29,8 @@ export class AppComponent implements OnInit {
   }
 
   logout(): void {
-    this.tokenStorageService.signOut();
-    window.location.reload();
+    this.authService.logout().subscribe();
+    console.log("powylogowaniu")
+    // window.location.reload();
   }
 }

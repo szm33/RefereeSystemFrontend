@@ -32,23 +32,28 @@ export class LoginComponent implements OnInit {
   }
 
   login(): void {
-    this.authService.login(this.form).subscribe(
+    this.authService.login({username: this.form.username, password: this.form.password}).subscribe(
       data => {
         console.log(data);
-        debugger;
-        this.tokenStorage.saveToken(data.token);
-        this.tokenStorage.saveUser(data.username);
-        this.isLoginFailed = false;
-        this.isLoggedIn = true;
-        this.username = data.username;
-        this.router.navigate(["home"]);
-      },
-      err => {
-        this.errorMessage = err.error.message;
-        this.isLoginFailed = true;
+        // debugger;
+        // this.tokenStorage.saveToken(data.token);
+        // this.tokenStorage.saveUser(data.username);
+        // this.isLoggedIn = true;
+        // this.username = data.username;
+        if (data) {
+          this.isLoginFailed = false;
+          this.router.navigate(["home"]);
+        }
+        else {
+          this.isLoginFailed = true;
+        }
       }
+      // err => {
+      //   this.errorMessage = err.error.message;
+      //   this.isLoginFailed = true;
+      // }
   );
-    console.log(this.tokenStorage.getToken());
+    // console.log(this.tokenStorage.getToken());
 
   }
 

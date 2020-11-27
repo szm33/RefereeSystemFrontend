@@ -6,10 +6,8 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 
-import { authInterceptorProviders } from './_helpers/auth.interceptor';
 import { errorInterceptorProviders } from './_helpers/error.interceptor';
 import { RefereeComponent } from './referee/referee.component';
 import { RefereeModalComponent } from './referee-modal/referee-modal.component';
@@ -19,7 +17,7 @@ import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 
-import { HttpClientModule, HttpClient } from '@angular/common/http';
+import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/http';
 import { ErrorComponent } from './error/error.component';
 import { PrivilegesComponent } from './privileges/privileges.component';
 import { RefereeDetailsComponent } from './referee-details/referee-details.component';
@@ -44,6 +42,7 @@ import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
 import { ArrivalTimePickerComponent } from './arrival-time-picker/arrival-time-picker.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import {TokenInterceptor} from './_helpers/token.interceptor';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -65,7 +64,6 @@ export const DateFormats = {
   declarations: [
     AppComponent,
     LoginComponent,
-    RegisterComponent,
     HomeComponent,
     RefereeComponent,
     RefereeModalComponent,
@@ -107,7 +105,12 @@ export const DateFormats = {
     }),
     BrowserAnimationsModule
   ],
-  providers: [authInterceptorProviders, errorInterceptorProviders,
+  providers: [  {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokenInterceptor,
+    multi: true
+  }
+  , errorInterceptorProviders,
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: DateFormats }],
   bootstrap: [AppComponent]

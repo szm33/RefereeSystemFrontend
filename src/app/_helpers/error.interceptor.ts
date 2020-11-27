@@ -17,14 +17,14 @@ import {
 import { Observable, throwError } from 'rxjs';
 
 import { retry, catchError } from 'rxjs/operators';
-import {TokenStorageService} from '../_services/token-storage.service';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
+import {AuthService} from '../_services/auth.service';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
-    constructor(private tokenStorage: TokenStorageService,
+    constructor(private authService: AuthService,
                 private  router: Router) {
     }
 
@@ -35,8 +35,12 @@ export class ErrorInterceptor implements HttpInterceptor {
       .pipe(
 
         catchError((error: HttpErrorResponse) => {
+            console.log("z handlera");
+            console.log(error);
 
           let errorMessage = '';
+
+          debugger;
 
           if (error.error instanceof ErrorEvent) {
 
@@ -46,18 +50,16 @@ export class ErrorInterceptor implements HttpInterceptor {
 
           } else {
               debugger;
-              if (error.status == 403 && !this.tokenStorage.getToken()) {
-                  // window.location.href = 'login';
-              }
-              else if (error.status == 433) {
+              if (error.status == 433) {
                   errorMessage = error.error.value;
                   window.alert(error.error.value);
               }
+              else if (error.status == 403) {
+                  this.authService.removeJwtToken();
+                  this.router.navigate(['noPrivileges']);
+              }
               else if (error.status == 400) {
                   this.router.navigate(['error']);
-              }
-              else if (error.status == 403) {
-                  // window.location.href = 'noPrivileges';
               }
               else if (window.location.pathname != "/error"){
                   // window.location.href = 'error'
@@ -66,7 +68,7 @@ export class ErrorInterceptor implements HttpInterceptor {
             // server-side error
 
           }
-          return throwError(errorMessage);
+          return throwError(error);
 
         })
       )

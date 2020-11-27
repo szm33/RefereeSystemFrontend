@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Observable, of} from 'rxjs';
+import {catchError, mapTo, tap} from 'rxjs/operators';
 
-const AUTH_API = 'https://localhost:8443/login';
+const AUTH_API = 'https://localhost:8443/login/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -15,15 +16,104 @@ export class AuthService {
 
   constructor(private http: HttpClient) { }
 
-  login(credentials): any {
-    return this.http.post(AUTH_API, {
-      username: credentials.username,
-      password : credentials.password
-    }, httpOptions);
-  }
+  // login(credentials): any {
+  //   return this.http.post(AUTH_API, {
+  //     username: credentials.username,
+  //     password : credentials.password
+  //   }, httpOptions);
+  // }
 
   locale(): Observable<any> {
     return this.http.get('https://localhost:8443/locale' , httpOptions);
   }
 
+
+
+  private readonly JWT_TOKEN = 'JWT_TOKEN';
+  private readonly REFRESH_TOKEN = 'REFRESH_TOKEN';
+  private loggedUser: String;
+
+
+  login(user: { username: String, password: String }): Observable<boolean> {
+    return this.http.post<any>(AUTH_API, user)
+        .pipe(
+            tap(tokens => this.doLoginUser(user.username, tokens)),
+            mapTo(true),
+            catchError(error => {
+              return of(false);
+            }));
+  }
+
+  logout() {
+    debugger;
+    return this.http.post<any>('https://localhost:8443/logout/', {
+      'refreshToken': this.getRefreshToken()
+    }).pipe(
+        tap(() => this.doLogoutUser()),
+        mapTo(true),
+        catchError(error => {
+          alert(error.error);
+          return of(false);
+        }));
+  }
+
+  isLoggedIn() {
+    return !!this.getJwtToken();
+  }
+
+  refreshToken() {
+    console.log("wywolany refresh");
+    return this.http.post<any>(`https://localhost:8443/refresh/`, {
+      'refreshToken': this.getRefreshToken()
+    }).pipe(tap((tokens: Tokens) => {
+      this.storeJwtToken(tokens.jwt);
+    }));
+  }
+
+  getJwtToken() {
+    console.log(localStorage);
+    return localStorage.getItem(this.JWT_TOKEN);
+  }
+
+  private doLoginUser(username: String, tokens: Tokens) {
+    debugger;
+    this.loggedUser = username;
+    this.storeTokens(tokens);
+  }
+
+  private doLogoutUser() {
+    this.loggedUser = null;
+    this.removeTokens();
+  }
+
+  private getRefreshToken() {
+    return localStorage.getItem(this.REFRESH_TOKEN);
+  }
+
+  private storeJwtToken(jwt: string) {
+    localStorage.setItem(this.JWT_TOKEN, jwt);
+  }
+
+  private storeTokens(tokens: Tokens) {
+    debugger;
+    localStorage.setItem(this.JWT_TOKEN, tokens.jwt);
+    localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
+  }
+
+  private removeTokens() {
+    localStorage.removeItem(this.JWT_TOKEN);
+    localStorage.removeItem(this.REFRESH_TOKEN);
+  }
+
+  public removeJwtToken() {
+    localStorage.removeItem(this.JWT_TOKEN);
+  }
+
+
+
+}
+
+ class Tokens {
+  jwt: string;
+  refreshToken: string;
 }

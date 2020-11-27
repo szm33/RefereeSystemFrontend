@@ -2,7 +2,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { RegisterComponent } from './register/register.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import {RefereeComponent} from './referee/referee.component';
@@ -19,15 +18,23 @@ import {AllMatchComponent} from './all-match/all-match.component';
 import {RefereeMatchesComponent} from './referee-matches/referee-matches.component';
 import {MatchModifyComponent} from './match-modify/match-modify.component';
 import {ArrivalTimePickerComponent} from './arrival-time-picker/arrival-time-picker.component';
+import {AuthGuard} from './_helpers/guards/AuthGuard';
+import {LoggedGuard} from './_helpers/guards/LoggedGuard';
 
 const routes: Routes = [
+  { path: '', pathMatch: 'full', redirectTo: '/login'},
   { path: 'home', component: HomeComponent },
-  { path: 'login', component: LoginComponent },
-  { path: 'register', component: RegisterComponent },
+  {
+    path: 'login', component: LoginComponent,
+    canActivate: [AuthGuard]
+  },
   { path: 'referee', component: RefereeComponent },
   { path: 'error', component: ErrorComponent },
   { path: 'noPrivileges', component: PrivilegesComponent },
-  { path: 'account', component: AccountDetailsComponent },
+  {
+    path: 'account', component: AccountDetailsComponent,
+    canActivate: [LoggedGuard]
+  },
   { path: 'team', component: TeamComponent },
   { path: 'team/:id', component: TeamEditComponent },
   { path: 'match', component: AllMatchComponent },
@@ -38,7 +45,6 @@ const routes: Routes = [
   { path: 'reset/:link', component: ResetPasswordComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },
   { path: 'replace/:id', component: ArrivalTimePickerComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' }
 ];
 
 @NgModule({
