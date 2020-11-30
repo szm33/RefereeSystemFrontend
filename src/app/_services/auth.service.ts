@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, mapTo, tap} from 'rxjs/operators';
+import jwt_decode from 'jwt-decode';
+
 
 const AUTH_API = 'https://localhost:8443/login/';
 
@@ -13,6 +15,16 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class AuthService {
+
+  private redirectAfterLogin: String;
+
+  public setRedirectAfterLogin(url: String) {
+    this.redirectAfterLogin = url;
+  }
+
+  public getRedirectAfterLogin() {
+    return this.redirectAfterLogin;
+  }
 
   constructor(private http: HttpClient) { }
 
@@ -109,11 +121,26 @@ export class AuthService {
     localStorage.removeItem(this.JWT_TOKEN);
   }
 
+  public getDecodedToken(): Token {
+    return jwt_decode(localStorage.getItem(this.JWT_TOKEN));
+  }
 
+  public getUsername() {
+    return this.getDecodedToken().sub;
+  }
+
+  public isAdmin() : boolean{
+    return this.isLoggedIn() ? !!this.getDecodedToken().roles.find(token => token.authority == 'ROLE_ADMIN') : false;
+  }
 
 }
 
  class Tokens {
   jwt: string;
   refreshToken: string;
+}
+
+class Token {
+  sub: String;
+  roles: { authority: String}[];
 }

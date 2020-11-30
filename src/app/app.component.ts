@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { TokenStorageService } from './_services/token-storage.service';
 import { TranslateService } from '@ngx-translate/core';
 import {AuthService} from './_services/auth.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -9,14 +10,11 @@ import {AuthService} from './_services/auth.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  isLoggedIn = false;
-  showAdminBoard = false;
-  showModeratorBoard = false;
-  username: string;
 
   constructor(private tokenStorageService: TokenStorageService,
               private translate: TranslateService,
-              private authService: AuthService) {
+              private authService: AuthService,
+              private router: Router) {
     translate.setDefaultLang('en');
   }
 
@@ -30,7 +28,11 @@ export class AppComponent implements OnInit {
 
   logout(): void {
     this.authService.logout().subscribe();
-    console.log("powylogowaniu")
-    // window.location.reload();
+    console.log("powylogowaniu");
+    this.router.navigate(['/login']);
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 }

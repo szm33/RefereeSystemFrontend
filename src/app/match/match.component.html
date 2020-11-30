@@ -39,7 +39,7 @@
         <div>Description: {{match.description}}</div>
     </div>
     <button class="btn-success" (click)="show(match)" >Show/Hide</button>
-    <button class="btn-info"  [routerLink]="'modify/' + match.id">Edit</button>
+    <button *ngIf="isAdmin()" class="btn-info"  [routerLink]="'/match/modify/' + match.id">Edit</button>
     <button *ngIf="isMyMatches" class="btn-danger" (click)="replaceReferee(match.id)">Replace me</button>
     <br>
     <br>

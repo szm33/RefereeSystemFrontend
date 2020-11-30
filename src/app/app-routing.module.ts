@@ -20,6 +20,7 @@ import {MatchModifyComponent} from './match-modify/match-modify.component';
 import {ArrivalTimePickerComponent} from './arrival-time-picker/arrival-time-picker.component';
 import {AuthGuard} from './_helpers/guards/AuthGuard';
 import {LoggedGuard} from './_helpers/guards/LoggedGuard';
+import {AdminGuard} from './_helpers/guards/AdminGuard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login'},
@@ -36,7 +37,10 @@ const routes: Routes = [
     canActivate: [LoggedGuard]
   },
   { path: 'team', component: TeamComponent },
-  { path: 'team/:id', component: TeamEditComponent },
+  {
+    path: 'team/:id', component: TeamEditComponent,
+    canActivate: [AdminGuard]
+  },
   { path: 'match', component: AllMatchComponent },
   { path: 'match/modify/:id', component: MatchModifyComponent },
   { path: 'match/referee/:id', component: RefereeMatchesComponent },
@@ -44,7 +48,10 @@ const routes: Routes = [
   { path: 'reset', component: SendResetPasswordComponent },
   { path: 'reset/:link', component: ResetPasswordComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },
-  { path: 'replace/:id', component: ArrivalTimePickerComponent },
+  {
+    path: 'replace/:id', component: ArrivalTimePickerComponent,
+    canActivate: [LoggedGuard]
+  },
 ];
 
 @NgModule({

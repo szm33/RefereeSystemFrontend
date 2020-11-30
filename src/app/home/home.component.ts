@@ -3,6 +3,7 @@ import {AuthService} from '../_services/auth.service';
 import {Match} from '../model/match';
 import {MatchService} from '../_services/match.service';
 
+
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,7 +15,8 @@ export class HomeComponent implements OnInit {
   matches: Match[];
 
 
-  constructor(private matchService: MatchService) { }
+  constructor(private matchService: MatchService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -23,6 +25,10 @@ export class HomeComponent implements OnInit {
     this.matchService.getMyMatches()
         .subscribe(data => this.matches = data,
             () => {});
+  }
+
+  isLoggedIn() {
+    return this.authService.isLoggedIn();
   }
 
 }

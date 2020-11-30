@@ -1,7 +1,7 @@
 <div *ngIf="referee">
 
     <h2>{{referee.name | uppercase}} {{referee.surname | uppercase}} Details</h2>
-    <div>
+    <div *ngIf="isLoggedIn()">
         <label>email:
             <div>
                 {{referee.email}}
@@ -13,6 +13,6 @@
             </div>
         </label>
     </div>
-    <app-referee-modify [refereeDetails]="referee"></app-referee-modify>
+    <app-referee-modify *ngIf="isAdmin()" [refereeDetails]="referee"></app-referee-modify>
     <button [routerLink]="'/match/referee/' + referee.id">Matches</button>
 </div>

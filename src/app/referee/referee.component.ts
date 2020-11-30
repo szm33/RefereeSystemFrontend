@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {RefereeService} from '../_services/referee.service';
 import {Referee} from '../model/referee';
+import {AuthService} from '../_services/auth.service';
 
 @Component({
   selector: 'app-referee',
@@ -11,7 +12,8 @@ export class RefereeComponent implements OnInit {
 
   referees: Referee[] =  [];
 
-  constructor(private refereeService: RefereeService) { }
+  constructor(private refereeService: RefereeService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
     this.refereeService.getAllReferee().subscribe(
@@ -27,5 +29,9 @@ export class RefereeComponent implements OnInit {
         .subscribe(result => {referee.active = !referee.active;},
             () => {}
        );
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 }

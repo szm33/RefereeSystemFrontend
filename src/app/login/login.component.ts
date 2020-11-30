@@ -42,7 +42,14 @@ export class LoginComponent implements OnInit {
         // this.username = data.username;
         if (data) {
           this.isLoginFailed = false;
-          this.router.navigate(["home"]);
+          debugger;
+          if (this.authService.getRedirectAfterLogin()) {
+            this.router.navigate([this.authService.getRedirectAfterLogin()]);
+            this.authService.setRedirectAfterLogin(null);
+          }
+          else {
+            this.router.navigate(["home"]);
+          }
         }
         else {
           this.isLoginFailed = true;

@@ -1,8 +1,8 @@
 <h2>Teams</h2>
-<app-team-modal></app-team-modal>
+<app-team-modal *ngIf="isAdmin()"></app-team-modal>
 <ul>
     <li *ngFor="let team of teams">
         <span class="badge">{{team.name}}</span> {{team.league}}
-        <button class="btn-success" [routerLink]="team.id">Edit team</button>
+        <button *ngIf="isAdmin()" class="btn-success" [routerLink]="team.id">Edit team</button>
     </li>
 </ul>

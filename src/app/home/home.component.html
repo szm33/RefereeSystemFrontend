@@ -1,5 +1,7 @@
 <div class="container">
-  <h1>Welcome</h1>
-  <button *ngIf="!matches" (click)="getMyMatches()">My matches</button>
-  <app-match [matches]="matches" [isMyMatches]="true" *ngIf="matches"></app-match>
+    <h1>Welcome</h1>
+    <div *ngIf="isLoggedIn()">
+        <button *ngIf="!matches" (click)="getMyMatches()">My matches</button>
+        <app-match [matches]="matches" [isMyMatches]="true" *ngIf="matches"></app-match>
+    </div>
 </div>

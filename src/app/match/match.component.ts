@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {MatchService} from '../_services/match.service';
 import {Match} from '../model/match';
+import {AuthService} from '../_services/auth.service';
 
 @Component({
   selector: 'app-match',
@@ -15,7 +16,8 @@ export class MatchComponent implements OnInit {
   isMyMatches: boolean = false;
 
 
-  constructor(private matchService: MatchService) { }
+  constructor(private matchService: MatchService,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -26,6 +28,10 @@ export class MatchComponent implements OnInit {
 
   replaceReferee(matchId: number) {
     this.matchService.replaceReferee(matchId).subscribe(() => {} , () => {});
+  }
+
+  isAdmin() {
+    return this.authService.isAdmin();
   }
 
 }

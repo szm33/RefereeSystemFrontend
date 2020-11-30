@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {CanActivate, Router} from '@angular/router';
+import {ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot} from '@angular/router';
 import {TokenStorageService} from '../../_services/token-storage.service';
 import {AuthService} from '../../_services/auth.service';
 
@@ -11,8 +11,10 @@ export class LoggedGuard implements CanActivate {
 
     constructor(private authService: AuthService, private router: Router) { }
 
-    canActivate() {
+    canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.authService.getJwtToken() == null) {
+            debugger;
+            this.authService.setRedirectAfterLogin(state.url);
             this.router.navigate(['/login']);
         }
         return true;
