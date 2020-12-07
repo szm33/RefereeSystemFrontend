@@ -3,6 +3,7 @@ import {ActivatedRoute} from '@angular/router';
 import {RefereeService} from '../_services/referee.service';
 import {Referee} from '../model/referee';
 import {AuthService} from '../_services/auth.service';
+import {FormControl, Validators} from '@angular/forms';
 
 
 @Component({
@@ -13,6 +14,9 @@ import {AuthService} from '../_services/auth.service';
 export class RefereeDetailsComponent implements OnInit {
 
     referee: Referee;
+    formControl = new FormControl('', [
+        Validators.required,
+    ]);
 
     constructor(private route: ActivatedRoute,
                 private refereeService: RefereeService,

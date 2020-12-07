@@ -3,6 +3,7 @@ import { TokenStorageService } from './_services/token-storage.service';
 import { TranslateService } from '@ngx-translate/core';
 import {AuthService} from './_services/auth.service';
 import {Router} from '@angular/router';
+import {DictionaryService} from './_services/dictionary.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +15,8 @@ export class AppComponent implements OnInit {
   constructor(private tokenStorageService: TokenStorageService,
               private translate: TranslateService,
               private authService: AuthService,
-              private router: Router) {
+              private router: Router,
+              private dictionaryService: DictionaryService) {
     translate.setDefaultLang('en');
   }
 
@@ -24,11 +26,12 @@ export class AppComponent implements OnInit {
         console.log(data);
         this.translate.use(data.value);
       });
+    this.dictionaryService.getDictionaries();
+
   }
 
   logout(): void {
     this.authService.logout().subscribe();
-    console.log("powylogowaniu");
     this.router.navigate(['/login']);
   }
 

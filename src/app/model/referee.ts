@@ -1,6 +1,7 @@
 export class Referee {
 
     name: String;
+    username: String;
     surname: String;
     license: String;
     email: String;

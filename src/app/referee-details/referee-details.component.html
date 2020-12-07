@@ -1,18 +1,50 @@
-<div *ngIf="referee">
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>Details of {{referee.name | uppercase}} {{referee.surname | uppercase}} </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="full-width" *ngIf="isAdmin()">
+            <mat-label class="d-inline">Username:</mat-label>
+            <div class="d-inline"> {{ referee.username }}</div>
+<!--            <mat-error *ngIf="formControl.hasError('required')">-->
+<!--                Username is <strong>required</strong>-->
+<!--            </mat-error>-->
+        </div>
 
-    <h2>{{referee.name | uppercase}} {{referee.surname | uppercase}} Details</h2>
-    <div *ngIf="isLoggedIn()">
-        <label>email:
-            <div>
-                {{referee.email}}
-            </div>
-        </label>
-        <label>license:
-            <div>
-                {{referee.license}}
-            </div>
-        </label>
-    </div>
-    <app-referee-modify *ngIf="isAdmin()" [refereeDetails]="referee"></app-referee-modify>
-    <button [routerLink]="'/match/referee/' + referee.id">Matches</button>
-</div>
+        <div class="full-width" *ngIf="isLoggedIn()">
+            <mat-label class="d-inline">Email:</mat-label>
+            <div class="d-inline"> {{ referee.email }}</div>
+            <!--            <mat-error *ngIf="formControl.hasError('required')">-->
+<!--                Username is <strong>required</strong>-->
+<!--            </mat-error>-->
+        </div>
+
+        <div class="full-width">
+            <mat-label class="d-inline">License:</mat-label>
+            <div class="d-inline"> {{ referee.license }}</div>
+            <!--            <mat-error *ngIf="formControl.hasError('required')">-->
+            <!--                Username is <strong>required</strong>-->
+            <!--            </mat-error>-->
+        </div>
+    </mat-card-content>
+</mat-card>
+<!--<div *ngIf="referee">-->
+
+<!--    <h2>{{referee.name | uppercase}} {{referee.surname | uppercase}} Details</h2>-->
+<!--    <div *ngIf="isLoggedIn()">-->
+<!--        <label>email:-->
+<!--            <div>-->
+<!--                {{referee.email}}-->
+<!--            </div>-->
+<!--        </label>-->
+<!--        <label>license:-->
+<!--            <div>-->
+<!--                {{referee.license}}-->
+<!--            </div>-->
+<!--        </label>-->
+<!--    </div>-->
+<!--    <app-referee-modify *ngIf="isAdmin()" [refereeDetails]="referee"></app-referee-modify>-->
+<!--    <button [routerLink]="'/match/referee/' + referee.id">Matches</button>-->
+<!--</div>-->
+

@@ -3,6 +3,7 @@ import {TeamService} from '../_services/team.service';
 import {Team} from '../model/team';
 import {League} from '../model/league';
 import {ActivatedRoute} from '@angular/router';
+import {FormControl, Validators} from '@angular/forms';
 
 @Component({
   selector: 'app-team-edit',
@@ -11,23 +12,18 @@ import {ActivatedRoute} from '@angular/router';
 })
 export class TeamEditComponent implements OnInit {
 
-  team : Team;
-  leagues: League[];
+  teamToEdit : Team = new Team();
 
   constructor(private teamService: TeamService,
               private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.teamService.getTeam(this.route.snapshot.params["id"]).subscribe(
-        data => this.team = data);
-    this.teamService.getAllLeagues().subscribe(
-        data => {
-          this.leagues = data;
-          }, () => {} );
+        team => this.teamToEdit = team);
   }
 
-  editTeam() {
-    this.teamService.editTeam(this.team).subscribe();
+  editTeam(team: Team) {
+    this.teamService.editTeam(team).subscribe();
   }
 
 }

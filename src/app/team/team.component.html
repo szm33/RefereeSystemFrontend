@@ -1,8 +1,34 @@
-<h2>Teams</h2>
-<app-team-modal *ngIf="isAdmin()"></app-team-modal>
-<ul>
-    <li *ngFor="let team of teams">
-        <span class="badge">{{team.name}}</span> {{team.league}}
-        <button *ngIf="isAdmin()" class="btn-success" [routerLink]="team.id">Edit team</button>
-    </li>
-</ul>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Show Teams">
+        <table mat-table
+               [dataSource]="teams" multiTemplateDataRows
+               class="mat-elevation-z8">
+            <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
+                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
+            </ng-container>
+
+            <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->
+            <ng-container matColumnDef="expandedDetail">
+                <td mat-cell *matCellDef="let team" [attr.colspan]="columnsToDisplay.length">
+                    <div class="example-element-detail"
+                         [@detailExpand]="team == pickedTeam ? 'expanded' : 'collapsed'">
+                        <button mat-flat-button color="primary" *ngIf="isAdmin()" [routerLink]="team.id">Edit team
+                        </button>
+                    </div>
+                </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="columnsToDisplay"></tr>
+            <tr mat-row *matRowDef="let element; columns: columnsToDisplay;"
+                class="example-element-row"
+                [class.example-expanded-row]="pickedTeam === element"
+                (click)="pickedTeam = pickedTeam === element ? null : element">
+            </tr>
+            <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
+        </table>
+    </mat-tab>
+    <mat-tab *ngIf="isAdmin()" label="Add Team">
+        <app-team-create></app-team-create>
+    </mat-tab>
+</mat-tab-group>

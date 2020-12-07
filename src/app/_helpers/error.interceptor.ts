@@ -55,7 +55,7 @@ export class ErrorInterceptor implements HttpInterceptor {
                   window.alert(error.error.value);
               }
               else if (error.status == 403) {
-                  this.authService.removeJwtToken();
+                  // this.authService.removeJwtToken();
                   this.router.navigate(['noPrivileges']);
               }
               else if (error.status == 400) {

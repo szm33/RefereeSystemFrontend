@@ -57,7 +57,6 @@ export class AuthService {
   }
 
   logout() {
-    debugger;
     return this.http.post<any>('https://localhost:8443/logout/', {
       'refreshToken': this.getRefreshToken()
     }).pipe(
@@ -83,7 +82,6 @@ export class AuthService {
   }
 
   getJwtToken() {
-    console.log(localStorage);
     return localStorage.getItem(this.JWT_TOKEN);
   }
 

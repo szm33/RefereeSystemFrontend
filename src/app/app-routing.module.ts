@@ -21,6 +21,7 @@ import {ArrivalTimePickerComponent} from './arrival-time-picker/arrival-time-pic
 import {AuthGuard} from './_helpers/guards/AuthGuard';
 import {LoggedGuard} from './_helpers/guards/LoggedGuard';
 import {AdminGuard} from './_helpers/guards/AdminGuard';
+import {RefereeEditComponent} from './referee-edit/referee-edit.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login'},
@@ -48,6 +49,7 @@ const routes: Routes = [
   { path: 'reset', component: SendResetPasswordComponent },
   { path: 'reset/:link', component: ResetPasswordComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },
+  { path: 'referee/edit/:id', component: RefereeEditComponent },
   {
     path: 'replace/:id', component: ArrivalTimePickerComponent,
     canActivate: [LoggedGuard]

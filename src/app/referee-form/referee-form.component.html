@@ -1,0 +1,53 @@
+<mat-card class="example-card">
+    <mat-card-header>
+        <div mat-card-avatar class="example-header-image"></div>
+        <mat-card-title>{{header}}</mat-card-title>
+    </mat-card-header>
+    <form class="form">
+        <mat-card-content>
+            <mat-form-field class="full-width" *ngIf="header.startsWith('Add')">
+                <mat-label>Username</mat-label>
+                <input type="text" matInput [formControl]="formControl" [(ngModel)]="referee.username" placeholder="">
+                <mat-error *ngIf="formControl.hasError('required')">
+                    Username is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Name</mat-label>
+                <input type="text" matInput [formControl]="formControl" [(ngModel)]="referee.name" placeholder="">
+                <mat-error *ngIf="formControl.hasError('required')">
+                    Name is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field  class="full-width">
+                <mat-label>Surname</mat-label>
+                <input name="coss" type="text" matInput  [(ngModel)]="referee.surname" placeholder="">
+                <mat-error *ngIf="formControl.hasError('required')">
+                    Surname is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field class="full-width">
+                <mat-label>Email</mat-label>
+                <input name="cos" type="text" matInput  [(ngModel)]="referee.email" placeholder="">
+                <mat-error *ngIf="formControl.hasError('required')">
+                    Email is <strong>required</strong>
+                </mat-error>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+                <mat-label>League</mat-label>
+                <mat-select [(value)]="referee.license">
+                    <mat-option *ngFor="let license of licenses" [value]="license.type">
+                        {{license.type}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-flat-button color="primary" (click)="emitData()">{{header}}</button>
+        </mat-card-actions>
+    </form>
+</mat-card>
