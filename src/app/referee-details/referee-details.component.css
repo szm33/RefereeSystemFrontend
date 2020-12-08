@@ -4,3 +4,20 @@
 .lab{
     display: inline;
 }
+mat-label {
+    font-weight: bold;
+}
+.text-padding {
+    padding-left: 10px;
+}
+.example-card {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+.main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}

@@ -1,26 +1,32 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {MatchService} from '../_services/match.service';
 import {Match} from '../model/match';
 import {AuthService} from '../_services/auth.service';
+import {animate, state, style, transition, trigger} from '@angular/animations';
 
 @Component({
   selector: 'app-match',
   templateUrl: './match.component.html',
-  styleUrls: ['./match.component.css']
+  styleUrls: ['./match.component.css'],
+  animations: [
+    trigger('detailExpand', [
+      state('collapsed', style({height: '0px', minHeight: '0'})),
+      state('expanded', style({height: '*'})),
+      transition('expanded <=> collapsed', animate('225ms cubic-bezier(0.4, 0.0, 0.2, 1)')),
+    ]),
+  ]
 })
-export class MatchComponent implements OnInit {
+export class MatchComponent{
 
   @Input()
   matches: Match[];
+  columnsToDisplay =  ['homeTeam','awayTeam','dateOfMatch'];
+  pickedMatch: Match | null;
   @Input()
   isMyMatches: boolean = false;
 
-
   constructor(private matchService: MatchService,
               private authService: AuthService) { }
-
-  ngOnInit(): void {
-  }
 
   show(match: Match): void {
     match.isClicked = !match.isClicked;
@@ -33,5 +39,4 @@ export class MatchComponent implements OnInit {
   isAdmin() {
     return this.authService.isAdmin();
   }
-
 }

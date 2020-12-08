@@ -52,6 +52,8 @@ import { TeamFormComponent } from './team-form/team-form.component';
 import { RefereeFormComponent } from './referee-form/referee-form.component';
 import { RefereeCreateComponent } from './referee-create/referee-create.component';
 import { RefereeEditComponent } from './referee-edit/referee-edit.component';
+import {MatListModule} from '@angular/material/list';
+import {MatPaginatorModule} from '@angular/material/paginator';
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -122,7 +124,9 @@ export const DateFormats = {
         }),
         ReactiveFormsModule,
         MatCardModule,
-        MatTabsModule
+        MatTabsModule,
+        MatListModule,
+        MatPaginatorModule
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

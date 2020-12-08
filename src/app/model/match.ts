@@ -6,10 +6,9 @@ export class Match {
     dateOfMatch: any;
     isClicked: boolean = false;
     description: String;
-    homeScore: number;
-    awayScore: number;
     referees: Referee[] = [];
-    teams: Team[] = [];
+    homeTeam: Team;
+    awayTeam: Team;
     id: number;
     version: String;
     homeTeamId: number;

@@ -43,13 +43,19 @@ const routes: Routes = [
     canActivate: [AdminGuard]
   },
   { path: 'match', component: AllMatchComponent },
-  { path: 'match/modify/:id', component: MatchModifyComponent },
+  {
+    path: 'match/modify/:id', component: MatchModifyComponent,
+    canActivate: [LoggedGuard]
+  },
   { path: 'match/referee/:id', component: RefereeMatchesComponent },
   { path: 'match/create', component: MatchCreateComponent },
   { path: 'reset', component: SendResetPasswordComponent },
   { path: 'reset/:link', component: ResetPasswordComponent },
   { path: 'referee/:id', component: RefereeDetailsComponent },
-  { path: 'referee/edit/:id', component: RefereeEditComponent },
+  {
+    path: 'referee/edit/:id', component: RefereeEditComponent,
+    canActivate: [AdminGuard]
+  },
   {
     path: 'replace/:id', component: ArrivalTimePickerComponent,
     canActivate: [LoggedGuard]
