@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Match} from '../model/match';
 import {MatchFunction} from '../model/matchFunction';
-import {MatchModify} from '../model/matchModify';
 import {ArrivalTime, MatchToReplaceInformations} from '../arrival-time-picker/arrival-time-picker.component';
 
 const URL = 'https://localhost:8443/match/';
@@ -43,7 +42,7 @@ export class MatchService {
     return this.http.get<Match[]>(URL + 'my', httpOptions);
   }
 
-  editMatch(match: MatchModify): Observable<any> {
+  editMatch(match: Match): Observable<any> {
     return this.http.put(URL, match, httpOptions);
   }
 

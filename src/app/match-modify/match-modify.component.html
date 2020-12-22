@@ -1,32 +1,113 @@
-<label for="date">Date of match</label>
-<div id="date">{{match.dateOfMatch | date}} change to: </div>
-<input matInput [matDatepicker]="picker" (dateChange)="pickDateOfMatch($event)" readonly="readonly">
-<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-<mat-datepicker #picker></mat-datepicker>
-<br/>
-<label for="time">Time of match</label>
-<div id="time" class="ngx-timepicker-field-example">
-    <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"></ngx-timepicker-field>
-</div>
+<!--<label for="date">Date of match</label>-->
+<!--<div id="date">{{match.dateOfMatch | date}} change to: </div>-->
+<!--<input matInput [matDatepicker]="picker" (dateChange)="pickDateOfMatch($event)" readonly="readonly">-->
+<!--<mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+<!--<mat-datepicker #picker></mat-datepicker>-->
+<!--<br/>-->
+<!--<label for="time">Time of match</label>-->
+<!--<div id="time" class="ngx-timepicker-field-example">-->
+<!--    <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"></ngx-timepicker-field>-->
+<!--</div>-->
 
-<label for="homeTeam">Home Team</label>
-<div id="homeTeam">{{match.homeTeam.name}}
-</div>
-<label for="awayTeam">Away Team</label>
-<div id="awayTeam">{{match.awayTeam.name}}</div>
-<!--{{refereeFunction.value == null ? 'empty' : refereeFunction.value.name + ' ' + refereeFunction.value.surname}}-->
-    <div *ngFor="let refereeFunction of match.functions">
+<!--<label for="homeTeam">Home Team</label>-->
+<!--<div id="homeTeam">{{match.homeTeam.name}}-->
+<!--</div>-->
+<!--<label for="awayTeam">Away Team</label>-->
+<!--<div id="awayTeam">{{match.awayTeam.name}}</div>-->
+<!--&lt;!&ndash;{{refereeFunction.value == null ? 'empty' : refereeFunction.value.name + ' ' + refereeFunction.value.surname}}&ndash;&gt;-->
+<!--    <div *ngFor="let refereeFunction of match.functions">-->
 
-        <div>
-            {{refereeFunction}} : {{getRefereeName(refereeFunction)}} change to
-            <mat-form-field appearance="fill">
-                <mat-label>Choose an option</mat-label>
-                <mat-select (selectionChange)="selectReferee($event, refereeFunction)">
-                    <mat-option *ngFor="let referee of freeReferees" [value]="referee">{{referee.name}} {{referee.surname}}</mat-option>
-                </mat-select>
+<!--        <div>-->
+<!--            {{refereeFunction}} : {{getRefereeName(refereeFunction)}} change to-->
+<!--            <mat-form-field appearance="fill">-->
+<!--                <mat-label>Choose an option</mat-label>-->
+<!--                <mat-select (selectionChange)="selectReferee($event, refereeFunction)">-->
+<!--                    <mat-option *ngFor="let referee of freeReferees" [value]="referee">{{referee.name}} {{referee.surname}}</mat-option>-->
+<!--                </mat-select>-->
+<!--            </mat-form-field>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <label for="description">Description</label>-->
+<!--    <input id="description" type="text" [(ngModel)]="match.description">-->
+<!--    <button  (click)="modifyMatch()">Modify</button>-->
+
+
+<div class="container center">
+    <div class="row">
+        <div class="col">
+            <!--            <mat-label>Date of match</mat-label>-->
+            <!--            <input id="date" matInput [matDatepicker]="picker" [(ngModel)]="date2"-->
+            <!--                   (dateChange)="pickDateOfMatch($event)" required #dateForm="ngModel">-->
+            <!--            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>-->
+            <!--            <mat-datepicker #picker></mat-datepicker>-->
+
+            <mat-form-field color="accent" appearance="fill">
+                <mat-label>Date of match</mat-label>
+                <input matInput [matDatepicker]="picker1" [ngModel]="match.dateOfMatch"
+                       (dateChange)="pickDateOfMatch($event)">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
             </mat-form-field>
         </div>
     </div>
-    <label for="description">Description</label>
-    <input id="description" type="text" [(ngModel)]="match.description">
-    <button  (click)="modifyMatch()">Modify</button>
+
+    <div *ngIf="match.dateOfMatch != null">
+        <div class="row">
+            <div class="col">
+                <mat-label for="time">Time of match</mat-label>
+                <div id="time" class="ngx-timepicker-field-example">
+                    <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"></ngx-timepicker-field>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <mat-label>Home Team</mat-label>
+                    <div>{{match.homeTeam.name}}</div>
+            </div>
+
+            <div class="col">
+                <mat-label>Away Team</mat-label>
+                    <div>{{match.awayTeam.name}}</div>
+            </div>
+        </div>
+        <div class="row" *ngFor="let referee of match.referees">
+            <div class="col">
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose function</mat-label>
+                    <mat-select [(value)]="referee.function">
+                        <mat-option *ngFor="let matchFunction of matchFunctions"
+                                    [value]="matchFunction.functionName">{{matchFunction.functionName}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <mat-form-field appearance="fill">
+                    <mat-label>Choose referee</mat-label>
+                    <mat-select [(value)]="referee.id">
+                        <mat-option *ngFor="let freeReferee of freeReferees"
+                                    [value]="freeReferee.id">{{freeReferee.name}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+                <button mat-flat-button color="accent" (click)="removeReferee(referee)">Remove referee</button>
+            </div>
+        </div>
+        <div *ngIf="match.referees.length < matchFunctions.length" class="row">
+            <div class="col">
+                <button mat-flat-button color="primary" (click)="addReferee()">Add referee</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field class="full-width">
+                    <mat-label>Description</mat-label>
+                    <input name="description" type="text" matInput [(ngModel)]="match.description">
+                </mat-form-field>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <button mat-flat-button color="primary" (click)="modifyMatch()">Create</button>
+        </div>
+    </div>
+</div>

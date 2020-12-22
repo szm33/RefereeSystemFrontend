@@ -18,15 +18,10 @@ export class TokenInterceptor implements HttpInterceptor {
             request = this.addToken(request, this.authService.getJwtToken());
         }
         return next.handle(request).pipe(catchError(error => {
-            console.log('error w interceptorze');
-            console.log(error);
             if (error instanceof HttpErrorResponse && error.status === 401) {
-                console.log('error w interceptorze z code 401');
                 this.authService.removeJwtToken();
                 return this.handle401Error(request, next);
             } else {
-                console.log('error w interceptorze nizej');
-                console.log(error);
                 return throwError(error);
             }
         }));
@@ -41,14 +36,12 @@ export class TokenInterceptor implements HttpInterceptor {
     }
 
     private handle401Error(request: HttpRequest<any>, next: HttpHandler) {
-        debugger;
         if (!this.isRefreshing) {
             this.isRefreshing = true;
             this.refreshTokenSubject.next(null);
 
             return this.authService.refreshToken().pipe(
                 switchMap((token: any) => {
-                    debugger;
                     this.isRefreshing = false;
                     this.refreshTokenSubject.next(token.jwt);
                     return next.handle(this.addToken(request, token.jwt));

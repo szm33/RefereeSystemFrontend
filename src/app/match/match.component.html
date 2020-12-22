@@ -73,7 +73,7 @@
                                 <div class="date">{{match.dateOfMatch | date}} {{match.timeOfMatch}}</div>
                             <div class="referee" *ngFor="let referee of match.referees">
                                 <mat-label>{{referee.function}}:</mat-label>
-                                    <div>{{referee.name}} {{referee.surname}}</div>
+                                    <div>{{referee.name}}</div>
                             </div>
                             <div class="description" *ngIf="match.description">
                             <mat-label>Description:</mat-label>

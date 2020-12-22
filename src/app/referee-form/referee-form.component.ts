@@ -3,7 +3,6 @@ import {FormControl, Validators} from '@angular/forms';
 import {Referee} from '../model/referee';
 import {License} from '../model/license';
 import {DictionaryService} from '../_services/dictionary.service';
-import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-referee-form',

@@ -44,7 +44,7 @@ const routes: Routes = [
   },
   { path: 'match', component: AllMatchComponent },
   {
-    path: 'match/modify/:id', component: MatchModifyComponent,
+    path: 'match/edit/:id', component: MatchModifyComponent,
     canActivate: [LoggedGuard]
   },
   { path: 'match/referee/:id', component: RefereeMatchesComponent },

@@ -8,8 +8,6 @@ import {
 
     HttpRequest,
 
-    HttpResponse,
-
     HttpErrorResponse, HTTP_INTERCEPTORS
 
 } from '@angular/common/http';
@@ -40,18 +38,13 @@ export class ErrorInterceptor implements HttpInterceptor {
 
           let errorMessage = '';
 
-          debugger;
 
           if (error.error instanceof ErrorEvent) {
 
             // client-side error
 
-            errorMessage = `Error: ${error.error.message}`;
-
           } else {
-              debugger;
               if (error.status == 433) {
-                  errorMessage = error.error.value;
                   window.alert(error.error.value);
               }
               else if (error.status == 403) {
