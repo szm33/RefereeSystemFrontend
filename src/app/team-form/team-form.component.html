@@ -1,29 +1,37 @@
 <mat-card class="example-card">
-    <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{header}}</mat-card-title>
-    </mat-card-header>
-    <form class="form">
+    <h1 class="title">{{header | uppercase}}</h1>
         <mat-card-content>
             <mat-form-field class="full-width">
                 <mat-label>Name</mat-label>
-                <input type="text" matInput [formControl]="formControl" [(ngModel)]="team.name" placeholder="">
-                <mat-error *ngIf="formControl.hasError('required')">
-                    Name is <strong>required</strong>
-                </mat-error>
+                <input type="text" matInput #name="ngModel" [(ngModel)]="team.name" required pattern="^[a-zA-Z0-9 ]+$">
             </mat-form-field>
+            <div *ngIf="name.invalid && name.touched"
+                 class="alert alert-danger custom-error">
+                <div *ngIf="name.errors.required">
+                    This filed is required
+                </div>
+                <div *ngIf="name.errors.pattern">
+                    zły pattern
+                </div>
+            </div>
 
             <mat-form-field appearance="fill">
                 <mat-label>League</mat-label>
-                <mat-select [(value)]="team.league">
+                <mat-select [(ngModel)]="team.league" #league="ngModel" required>
                     <mat-option *ngFor="let league of leagues" [value]="league.name">
                         {{league.name}}
                     </mat-option>
                 </mat-select>
             </mat-form-field>
+            <div *ngIf="league.invalid && league.touched"
+                 class="alert alert-danger custom-error">
+                <div *ngIf="league.errors.required">
+                    This filed is required
+                </div>
+            </div>
+            <div class="row">
+            <button [disabled]="league.invalid || name.invalid" style="margin-left: 43%" mat-flat-button
+                    color="primary" (click)="emitData()">{{header}}</button>
+            </div>
         </mat-card-content>
-        <mat-card-actions>
-            <button mat-flat-button color="primary" (click)="emitData()">{{header}}</button>
-        </mat-card-actions>
-    </form>
 </mat-card>

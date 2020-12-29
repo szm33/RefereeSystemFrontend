@@ -54,22 +54,24 @@
     <div *ngIf="match.dateOfMatch != null">
         <div class="row">
             <div class="col">
-                <mat-label for="time">Time of match</mat-label>
-                <div id="time" class="ngx-timepicker-field-example">
+                <mat-label>Time of match</mat-label>
+                <div id="time" class="ngx-timepicker-field-example time-padding">
                     <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"></ngx-timepicker-field>
                 </div>
             </div>
         </div>
 
         <div class="row">
-            <div class="col">
+            <div class="col-5">
                 <mat-label>Home Team</mat-label>
-                    <div>{{match.homeTeam.name}}</div>
+                <div class="team">{{match.homeTeam.name}}</div>
             </div>
-
-            <div class="col">
+            <div class="col-2">
+                <div class="vs">VS</div>
+            </div>
+            <div class="col-5">
                 <mat-label>Away Team</mat-label>
-                    <div>{{match.awayTeam.name}}</div>
+                <div class="team">{{match.awayTeam.name}}</div>
             </div>
         </div>
         <div class="row" *ngFor="let referee of match.referees">
@@ -81,6 +83,8 @@
                                     [value]="matchFunction.functionName">{{matchFunction.functionName}}</mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+            <div class="col">
                 <mat-form-field appearance="fill">
                     <mat-label>Choose referee</mat-label>
                     <mat-select [(value)]="referee.id">
@@ -88,17 +92,20 @@
                                     [value]="freeReferee.id">{{freeReferee.name}}</mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+            <div class="col">
                 <button mat-flat-button color="accent" (click)="removeReferee(referee)">Remove referee</button>
             </div>
         </div>
         <div *ngIf="match.referees.length < matchFunctions.length" class="row">
             <div class="col">
-                <button mat-flat-button color="primary" (click)="addReferee()">Add referee</button>
+                <button mat-flat-button color="primary" style="margin-bottom: 5px" (click)="addReferee()">Add referee
+                </button>
             </div>
         </div>
         <div class="row">
             <div class="col">
-                <mat-form-field class="full-width">
+                <mat-form-field>
                     <mat-label>Description</mat-label>
                     <input name="description" type="text" matInput [(ngModel)]="match.description">
                 </mat-form-field>

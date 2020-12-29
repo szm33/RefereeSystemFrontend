@@ -1,72 +1,124 @@
-<!--<h1>My account</h1>-->
-<!--<div class="form-group">-->
-<!--    <label for="username">Username</label>-->
-<!--    <div id="username">{{account.username}}</div>-->
-<!--    <label for="email">Email</label>-->
-<!--    <input id="email" class="form-control" placeholder="email" [(ngModel)]="account.email">-->
-<!--    <button (click)="modifyMyAccount()">modify</button>-->
-<!--    <br/>-->
-<!--    <label for="oldPaswssword">Old password</label>-->
-<!--    <input type="text" id="oldPaswssword" [(ngModel)]="password.oldPassword">-->
-<!--    <label for="paswssword">New password</label>-->
-<!--    <input type="text" id="paswssword" [(ngModel)]="password.newPassword">-->
-<!--    <label for="confirmedPaswssword">Confirm password</label>-->
-<!--    <input type="text" id="confirmedPaswssword" [(ngModel)]="password.confirmedPassword">-->
-<!--    <button (click)="changePassword()">modify</button>-->
-<!--</div>-->
 <div class="main">
-<mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Account Details">
-        <mat-card class="example-card">
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field class="full-width">
-                            <mat-label>Username</mat-label>
-                            <input name="email" type="text" matInput [(ngModel)]="account.username" placeholder=""
-                                   readonly>
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field class="full-width">
-                            <mat-label>Email</mat-label>
-                            <input name="email" type="text" matInput [(ngModel)]="account.email" placeholder="">
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-                <button mat-flat-button color="primary" (click)="modifyMyAccount()">Modify</button>
-            </mat-card-content>
-        </mat-card>
-    </mat-tab>
+    <mat-tab-group mat-align-tabs="center">
+        <mat-tab label="Account Details">
+            <mat-card class="example-card">
+                <h1 class="title">{{'Account details' | uppercase}}</h1>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <mat-label>Username</mat-label>
+                                <input type="text" matInput [(ngModel)]="account.username"
+                                       readonly required #name="ngModel">
+                            </mat-form-field>
 
-    <mat-tab label="Change Password">
-        <mat-card class="example-card">
-            <mat-card-content>
-                <mat-list>
-                    <mat-list-item>
-                        <mat-form-field class="full-width">
-                            <mat-label>Old Password</mat-label>
-                            <input name="email" type="text" matInput [(ngModel)]="password.oldPassword" placeholder="">
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field class="full-width">
-                            <mat-label>New Password</mat-label>
-                            <input name="email" type="text" matInput [(ngModel)]="password.newPasword" placeholder="">
-                        </mat-form-field>
-                    </mat-list-item>
-                    <mat-list-item>
-                        <mat-form-field class="full-width">
-                            <mat-label>Confirm Password</mat-label>
-                            <input name="email" type="text" matInput [(ngModel)]="password.confirmedPassword"
-                                   placeholder="">
-                        </mat-form-field>
-                    </mat-list-item>
-                </mat-list>
-                <button mat-flat-button color="primary" (click)="changePassword()">Change Password</button>
-            </mat-card-content>
-        </mat-card>
-    </mat-tab>
-</mat-tab-group>
+                            <div *ngIf="name.invalid && (name.dirty || name.touched)"
+                                 class="alert alert-danger custom-error">
+                                <div *ngIf="name.errors.required">
+                                    Name is required.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <!--                        <mat-list-item style="padding-top: 3%">-->
+                            <mat-form-field class="full-width">
+                                <mat-label>Email</mat-label>
+                                <input name="email" type="text" matInput [(ngModel)]="account.email" #email="ngModel"
+                                       required email>
+                            </mat-form-field>
+                            <!--                        </mat-list-item>-->
+                            <div *ngIf="email.invalid && (email.dirty || email.touched)"
+                                 class="alert alert-danger custom-error">
+                                <div *ngIf="email.errors.required">
+                                    Email is required.
+                                </div>
+                                <div *ngIf="email.errors.email">
+                                    Invalid pattern of email
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--                    </mat-list>-->
+                    <div class="row">
+                        <div class="col">
+                            <button [disabled]="email.invalid || name.invalid" mat-flat-button color="primary"
+                                    (click)="modifyMyAccount()">Modify
+                            </button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+
+        <mat-tab label="Change Password">
+            <mat-card class="example-card">
+                <h1 class="title">{{'Change password' | uppercase}}</h1>
+                <mat-card-content>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <mat-label>Old Password</mat-label>
+                                <input type="password" matInput [(ngModel)]="password.oldPassword"
+                                       required  minlength="8" #oldPassword="ngModel">
+                            </mat-form-field>
+                            <div *ngIf="oldPassword.invalid && oldPassword.touched"
+                                 class="alert alert-danger custom-error">
+                                <div *ngIf="oldPassword.errors.required">
+                                    This filed is required
+                                </div>
+                                <div *ngIf="oldPassword.errors.minlength && oldPassword.dirty">
+                                    Password must have minimum 8 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <mat-label>New Password</mat-label>
+                                <input type="password" matInput [(ngModel)]="password.newPassword"
+                                       required minlength="8" #newPassword="ngModel">
+                            </mat-form-field>
+                            <div *ngIf="newPassword.invalid && newPassword.touched"
+                                 class="alert alert-danger custom-error">
+                                <div *ngIf="newPassword.errors.required">
+                                    This filed is required
+                                </div>
+                                <div *ngIf="newPassword.errors.minlength && newPassword.dirty">
+                                    Password must have minimum 8 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <mat-form-field class="full-width">
+                                <mat-label>Confirm Password</mat-label>
+                                <input type="password" matInput [(ngModel)]="password.confirmedPassword"
+                                       required minlength="8" #confirmedPassword="ngModel">
+                            </mat-form-field>
+                            <div *ngIf="confirmedPassword.invalid && confirmedPassword.touched"
+                                 class="alert alert-danger custom-error">
+                                <div *ngIf="confirmedPassword.errors.required">
+                                    This filed is required
+                                </div>
+                                <div *ngIf="confirmedPassword.errors.minlength && confirmedPassword.dirty">
+                                    Password must have minimum 8 characters
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col">
+                            <button [disabled]="confirmedPassword.invalid || oldPassword.invalid || newPassword.invalid"
+                                    mat-flat-button color="primary" (click)="changePassword()">Change Password</button>
+                        </div>
+                    </div>
+                </mat-card-content>
+            </mat-card>
+        </mat-tab>
+    </mat-tab-group>
 </div>
 

@@ -15,9 +15,6 @@ export class RefereeFormComponent implements OnInit  {
   header: String;
   @Input()
   referee: Referee = new Referee();
-  formControl = new FormControl('', [
-    Validators.required,
-  ]);
   licenses: License[];
   @Output()
   refereeEmitter: EventEmitter<Referee> = new EventEmitter<Referee>();
@@ -35,6 +32,11 @@ export class RefereeFormComponent implements OnInit  {
     else {
       this.licenses = this.dictionaryService.store.licenses;
     }
+  }
+
+  isUsernameInvalid() {
+    return this.header.startsWith('Add') ?
+        !this.referee.username || !/^[a-zA-Z0-9]+$/.test(this.referee.username.toString()) : false;
   }
 
 }

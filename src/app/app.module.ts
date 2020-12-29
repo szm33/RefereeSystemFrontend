@@ -55,6 +55,8 @@ import { RefereeEditComponent } from './referee-edit/referee-edit.component';
 import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatNativeDateModule} from '@angular/material/core';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 
 export function HttpLoaderFactory(http: HttpClient) {
     return new TranslateHttpLoader(http);
@@ -115,7 +117,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatCardModule,
         MatTabsModule,
         MatListModule,
-        MatPaginatorModule
+        MatPaginatorModule,
+        MatSnackBarModule,
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

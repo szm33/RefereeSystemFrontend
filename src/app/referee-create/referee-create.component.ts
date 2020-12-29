@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {Referee} from '../model/referee';
 import {RefereeService} from '../_services/referee.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-referee-create',
@@ -9,10 +10,14 @@ import {RefereeService} from '../_services/referee.service';
 })
 export class RefereeCreateComponent {
 
-  constructor(private refereeService: RefereeService) { }
+  constructor(private refereeService: RefereeService,
+              private router: Router) { }
 
   addReferee(referee: Referee) {
-    this.refereeService.addReferee(referee).subscribe();
+    this.refereeService.addReferee(referee).subscribe(() => this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
+      this.router.navigate(['/account'])
+    }),
+        () => {});
   }
 
 }

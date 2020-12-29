@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, EventEmitter, OnInit, Output, ViewChild} from '@angular/core';
 import {Match} from '../model/match';
 import {MatchService} from '../_services/match.service';
 import {Referee} from '../model/referee';
@@ -18,10 +18,7 @@ export class MatchCreateComponent implements OnInit {
     freeReferees: Referee[] = [];
     freeTeams: Team[] = [];
     matchFunctions: MatchFunction[] = [];
-    // matchFunctions: Map<MatchFunction, Referee> = new Map();
-    // selectedTeams: Map<boolean, Team> = new Map().set(false, null).set(true, null);
-    // date: any;
-
+//zrobic jak w modyfikacji ze sprawdza czy team/referee jest po zmianie jesli tak zostawia
     pickDateOfMatch(event) {
         debugger;
         this.freeTeams = [];
@@ -34,8 +31,7 @@ export class MatchCreateComponent implements OnInit {
             date.setDate(date.getDate() + 1);
             debugger;
             this.matchService.getFreeTeamsAndReferees(date).subscribe(data => {
-                this.match.referees.forEach(referee => referee.id = undefined);
-                this.freeReferees.push(new Referee());
+                this.match.referees.forEach(referee => referee.id = null);
                 data.referees.forEach(referee => this.freeReferees.push(referee));
                 data.teams.forEach(team => this.freeTeams.push(team));
                 this.match.dateOfMatch = event.value;
@@ -82,31 +78,13 @@ export class MatchCreateComponent implements OnInit {
     }
 
     createMatch() {
-        debugger;
-        // this.match.dateOfMatch = [];
-        // this.match.dateOfMatch.push(this.date.toArray()[0]);
-        // this.match.dateOfMatch.push(this.date.toArray()[1] + 1);
-        // this.match.dateOfMatch.push(this.date.toArray()[2]);
-        // console.log(this.match.dateOfMatch);
-        // this.selectedTeams.forEach((team, isGuest) => {
-        //   if (team != null) {
-        //     if (isGuest) {
-        //       this.match.awayTeamId = team.id;
-        //     } else {
-        //       this.match.homeTeamId = team.id;
-        //     }
-        //   }
-        // });
-        // this.matchFunctions.forEach((referee, matchFunction) => {
-        //   if(referee != null && referee.id ) {
-        //     referee.function = matchFunction.functionName;
-        //     this.match.referees.push(referee);
-        //   }
-        // });
         this.match.dateOfMatch.setDate(this.match.dateOfMatch.getDate() + 1);
         this.match.referees = this.match.referees.filter(referee => referee.id);
-        this.matchService.createMatch(this.match).subscribe(() => this.router.navigate(['match']),
-            () => window.alert('failed create'));
+        this.matchService.createMatch(this.match).subscribe(data => {
+            this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
+                this.router.navigate(['/match']);
+            });
+        }), () => window.alert('failed create');
     }
 
 }

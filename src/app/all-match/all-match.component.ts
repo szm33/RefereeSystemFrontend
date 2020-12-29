@@ -25,5 +25,4 @@ export class AllMatchComponent implements OnInit {
   isAdmin() {
     return this.authService.isAdmin();
   }
-
 }

@@ -1,4 +1,4 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {MatchService} from '../_services/match.service';
 import {Match} from '../model/match';
 import {AuthService} from '../_services/auth.service';

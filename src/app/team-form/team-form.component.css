@@ -13,20 +13,31 @@ button {
     padding-bottom: 1px;
 }
 
-.example-card {
-    max-height: 300px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-    padding-bottom: 30px;
-}
-
-mat-card-title {
-    margin-left: auto;
-    margin-right: auto;
-    text-align: center;
+.title {
+    font-weight: bold;
 }
 
 mat-form-field {
     display: block;
+}
+.example-card {
+
+    max-height: 600px;
+    max-width: 600px;
+    margin: 3% auto;
+}
+
+mat-label {
+    font-weight: bold;
+}
+mat-form-field {
+    display: block;
+}
+.custom-error {
+    text-align: start;
+    background-color: white;
+    border: none;
+    padding-top: 0;
+    padding-left: 0;
+    color: red;
 }

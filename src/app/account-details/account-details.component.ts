@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../_services/account.service';
 import {Account} from '../model/account';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-account-details',
@@ -12,7 +13,8 @@ export class AccountDetailsComponent implements OnInit {
   account: Account = new Account();
   password: any = {};
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,
+              private router: Router,) { }
 
   ngOnInit(): void {
     this.accountService.getMyAccount()
@@ -23,15 +25,20 @@ export class AccountDetailsComponent implements OnInit {
 
   changePassword(): void {
     this.accountService.changePassword(this.password)
-        .subscribe(() => {this.password = {};
-        window.alert("password change successfully");},
+        .subscribe(() => this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
+                this.router.navigate(['/account'])
+            }),
             () => {});
 
   }
 
   modifyMyAccount(): void {
+    debugger;
     this.accountService.modifyMyAccount(this.account)
-        .subscribe(() => window.alert("modify successfully"),
+        .subscribe(() =>
+          this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
+                this.router.navigate(['/account'])
+          }),
             () => {});
   }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../_services/auth.service';
 import {Match} from '../model/match';
 import {MatchService} from '../_services/match.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 
 @Component({
@@ -16,9 +17,11 @@ export class HomeComponent implements OnInit {
 
 
   constructor(private matchService: MatchService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    this._snackBar.open("Testujemy", null,{duration: 3 * 1000});
   }
 
   getMyMatches(): void {

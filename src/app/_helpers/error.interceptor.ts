@@ -18,12 +18,14 @@ import { retry, catchError } from 'rxjs/operators';
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {AuthService} from '../_services/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable()
 export class ErrorInterceptor implements HttpInterceptor {
 
     constructor(private authService: AuthService,
-                private  router: Router) {
+                private  router: Router,
+                private _snackBar: MatSnackBar) {
     }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -44,20 +46,16 @@ export class ErrorInterceptor implements HttpInterceptor {
             // client-side error
 
           } else {
-              if (error.status == 433) {
-                  window.alert(error.error.value);
+              if (error.status == 422) {
+                  this._snackBar.open(error.error.value, null, {duration: 5 * 1000});
               }
               else if (error.status == 403) {
                   // this.authService.removeJwtToken();
                   this.router.navigate(['noPrivileges']);
               }
-              else if (error.status == 400) {
+              else if (error.status == 500) {
                   this.router.navigate(['error']);
               }
-              else if (window.location.pathname != "/error"){
-                  // window.location.href = 'error'
-              }
-
             // server-side error
 
           }

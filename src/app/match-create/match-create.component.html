@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col">
                 <mat-label for="time">Time of match</mat-label>
-                <div id="time" class="ngx-timepicker-field-example">
+                <div id="time" class="ngx-timepicker-field-example time-padding">
                     <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"></ngx-timepicker-field>
                 </div>
             </div>
@@ -30,6 +30,7 @@
         <div class="row">
             <div class="col">
                 <mat-label>Home Team</mat-label>
+                <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Choose team</mat-label>
                     <mat-select [(value)]="match.homeTeam">
@@ -40,6 +41,7 @@
 
             <div class="col">
                 <mat-label>Away Team</mat-label>
+                <br/>
                 <mat-form-field appearance="fill">
                     <mat-label>Choose team</mat-label>
                     <mat-select [(value)]="match.awayTeam">
@@ -57,6 +59,8 @@
                                     [value]="matchFunction.functionName">{{matchFunction.functionName}}</mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+            <div class="col">
                 <mat-form-field appearance="fill">
                     <mat-label>Choose referee</mat-label>
                     <mat-select [(value)]="referee.id">
@@ -64,6 +68,8 @@
                                     [value]="freeReferee.id">{{freeReferee.name}} {{freeReferee.surname}}</mat-option>
                     </mat-select>
                 </mat-form-field>
+            </div>
+            <div class="col">
                 <button mat-flat-button color="accent" (click)="removeReferee(referee)">Remove referee</button>
             </div>
         </div>
@@ -74,7 +80,7 @@
         </div>
         <div class="row">
             <div class="col">
-                <mat-form-field class="full-width">
+                <mat-form-field>
                     <mat-label>Description</mat-label>
                     <input name="description" type="text" matInput [(ngModel)]="match.description">
                 </mat-form-field>
