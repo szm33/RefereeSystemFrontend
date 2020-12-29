@@ -56,6 +56,9 @@ import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatNativeDateModule} from '@angular/material/core';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { ReplacementMatchComponent } from './replacement-match/replacement-match.component';
+import {MatDialogModule} from '@angular/material/dialog';
+import {ReplacementDialogComponent} from './replacement-match/replacemnet-dialog/replacement-dialog.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -90,6 +93,8 @@ export function HttpLoaderFactory(http: HttpClient) {
         RefereeFormComponent,
         RefereeCreateComponent,
         RefereeEditComponent,
+        ReplacementMatchComponent,
+        ReplacementDialogComponent,
     ],
     imports: [
         BrowserModule,
@@ -119,6 +124,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatListModule,
         MatPaginatorModule,
         MatSnackBarModule,
+        MatDialogModule,
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

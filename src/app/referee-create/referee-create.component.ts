@@ -15,7 +15,7 @@ export class RefereeCreateComponent {
 
   addReferee(referee: Referee) {
     this.refereeService.addReferee(referee).subscribe(() => this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
-      this.router.navigate(['/account'])
+      this.router.navigate(['/referee'])
     }),
         () => {});
   }

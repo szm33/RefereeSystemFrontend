@@ -18,9 +18,6 @@ export class TeamFormComponent implements OnInit {
     @Input()
     team: Team = new Team();
     leagues: League[];
-    formControl = new FormControl('', [
-        Validators.required,
-    ]);
     @Output()
     teamEmitter: EventEmitter<Team> = new EventEmitter<Team>();
 

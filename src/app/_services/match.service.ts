@@ -3,7 +3,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Match} from '../model/match';
 import {MatchFunction} from '../model/matchFunction';
-import {ArrivalTime, MatchToReplaceInformations} from '../arrival-time-picker/arrival-time-picker.component';
+import {MatchToReplaceInformations} from '../replacement-match/replacement-match.component';
+import {ArrivalTime} from '../arrival-time-picker/arrival-time-picker.component';
 
 const URL = 'https://localhost:8443/match/';
 
@@ -56,6 +57,10 @@ export class MatchService {
 
   getReplaceInformations(id: number): Observable<MatchToReplaceInformations> {
     return this.http.get<MatchToReplaceInformations>(URL + 'arrivalTime/' + id, httpOptions);
+  }
+  
+  getAllReplaceInformations(): Observable<MatchToReplaceInformations[]> {
+    return this.http.get<MatchToReplaceInformations[]>(URL + 'replacesInformations/', httpOptions);
   }
 
   sendArrivalTime(arrivalTime: ArrivalTime): Observable<any> {

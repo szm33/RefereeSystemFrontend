@@ -12,4 +12,7 @@ export class Match {
     id: number;
     version: String;
     timeOfMatch: String;
+    replaceFunction: String;
+    replaceId: number;
+    refereeCandidate: boolean;
 }

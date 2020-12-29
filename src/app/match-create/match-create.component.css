@@ -3,8 +3,9 @@
     text-align: center;
 }
 .time-padding {
-    margin-left: 42%;
+    margin-left: 38%;
     width: 22%;
+    padding-bottom: 1%;
 }
 .full-width{
     display: block;
@@ -19,13 +20,47 @@ mat-label {
     padding-left: 10px;
 }
 .example-card {
-    min-width: 150px;
-    max-width: 500px;
-    width: 100%;
+    max-height: 600px;
+    max-width: 900px;
+    margin: 3% auto;
 }
 .main {
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
+}
+.form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+}
+button {
+    float: right;
+    padding-bottom: 1px;
+}
+
+.title {
+    font-weight: bold;
+}
+mat-label {
+    font-weight: bold;
+}
+.custom-error {
+    text-align: start;
+    background-color: white;
+    border: none;
+    padding-top: 0;
+    padding-left: 0;
+    color: red;
+}
+.create {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+.remove {
+    padding-top: 7px;
+    padding-bottom: 8px;
 }

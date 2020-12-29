@@ -22,6 +22,7 @@ import {AuthGuard} from './_helpers/guards/AuthGuard';
 import {LoggedGuard} from './_helpers/guards/LoggedGuard';
 import {AdminGuard} from './_helpers/guards/AdminGuard';
 import {RefereeEditComponent} from './referee-edit/referee-edit.component';
+import {ReplacementMatchComponent} from './replacement-match/replacement-match.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login'},
@@ -56,8 +57,12 @@ const routes: Routes = [
     path: 'referee/edit/:id', component: RefereeEditComponent,
     canActivate: [AdminGuard]
   },
+  // {
+  //   path: 'replace/:id', component: ArrivalTimePickerComponent,
+  //   canActivate: [LoggedGuard]
+  // },
   {
-    path: 'replace/:id', component: ArrivalTimePickerComponent,
+    path: 'replace', component: ReplacementMatchComponent,
     canActivate: [LoggedGuard]
   },
 ];

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {TeamService} from '../_services/team.service';
 import {Team} from '../model/team';
 import {League} from '../model/league';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 import {FormControl, Validators} from '@angular/forms';
 
 @Component({
@@ -15,7 +15,8 @@ export class TeamEditComponent implements OnInit {
   teamToEdit : Team = new Team();
 
   constructor(private teamService: TeamService,
-              private route: ActivatedRoute) { }
+              private route: ActivatedRoute,
+              private navigationRouter: Router) { }
 
   ngOnInit(): void {
     this.teamService.getTeam(this.route.snapshot.params["id"]).subscribe(
@@ -23,7 +24,9 @@ export class TeamEditComponent implements OnInit {
   }
 
   editTeam(team: Team) {
-    this.teamService.editTeam(team).subscribe();
+    this.teamService.editTeam(team).subscribe(
+        () => this.navigationRouter.navigate(['/team']),
+        () => {});
   }
 
 }

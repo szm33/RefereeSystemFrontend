@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatchService} from '../_services/match.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Match} from '../model/match';
 
 @Component({
   selector: 'app-arrival-time-picker',
@@ -9,18 +10,18 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ArrivalTimePickerComponent implements OnInit {
 
-  matchInfo: MatchToReplaceInformations = new MatchToReplaceInformations();
+  // matchInfo: MatchToReplaceInformations = new MatchToReplaceInformations();
   arrivalTime: ArrivalTime = new ArrivalTime();
 
   constructor(private matchService: MatchService,
               private router: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.matchService.getReplaceInformations(this.router.snapshot.params['id'])
-        .subscribe(data => { this.matchInfo.description = data.description;
-        this.matchInfo.dateOfMatch = new Date(data.dateOfMatch[0],data.dateOfMatch[1] - 1,data.dateOfMatch[2],data.dateOfMatch[3],data.dateOfMatch[4]);
-
-    }, () => {})
+    // this.matchService.getReplaceInformations(this.router.snapshot.params['id'])
+    //     .subscribe(data => { this.matchInfo.description = data.description;
+    //     this.matchInfo.dateOfMatch = new Date(data.dateOfMatch[0],data.dateOfMatch[1] - 1,data.dateOfMatch[2],data.dateOfMatch[3],data.dateOfMatch[4]);
+    //
+    // }, () => {})
   }
 
   sendArrivalTime(): void {
@@ -32,11 +33,7 @@ export class ArrivalTimePickerComponent implements OnInit {
 
 }
 
-export class MatchToReplaceInformations {
 
-  dateOfMatch: Date;
-  description: String;
-}
 
 export class ArrivalTime {
 

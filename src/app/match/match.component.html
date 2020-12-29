@@ -83,6 +83,7 @@
                         <button mat-flat-button color="primary" *ngIf="isAdmin()" [routerLink]="'edit/' + match.id">
                             Edit Match
                         </button>
+                            <button *ngIf="isMyMatches" class="btn-danger" (click)="replaceReferee(match.id)">Replace me</button>
                         </div>
                     </div>
                 </td>
