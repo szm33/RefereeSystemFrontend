@@ -74,6 +74,10 @@ export class ReplacementMatchComponent implements OnInit {
     resign(replaceId: number) {
         console.log('Resing');
         console.log(replaceId);
+        this.matchService.replaceResign(replaceId).subscribe(() => this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
+                this.router.navigate(['/replace'])
+            }),
+            () => {});
     }
 
 }

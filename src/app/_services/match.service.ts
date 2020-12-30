@@ -67,4 +67,8 @@ export class MatchService {
     return this.http.post(URL + 'arrivalTime', arrivalTime, httpOptions);
   }
 
+  replaceResign(replaceId: number): Observable<any> {
+    return this.http.post(URL + 'resign', replaceId, httpOptions);
+  }
+
 }

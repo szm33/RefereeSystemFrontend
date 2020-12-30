@@ -17,6 +17,9 @@
       <li class="nav-item">
         <a href="/match" class="nav-link" routerLink="match">Matches</a>
       </li>
+      <li *ngIf="isLoggedIn()" class="nav-item">
+        <a href="/replace" class="nav-link" routerLink="replace">Replaces</a>
+      </li>
     </ul>
 
     <ul *ngIf="!isLoggedIn()" class="navbar-nav ml-auto">
