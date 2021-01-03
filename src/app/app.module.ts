@@ -59,6 +59,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { ReplacementMatchComponent } from './replacement-match/replacement-match.component';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ReplacementDialogComponent} from './replacement-match/replacemnet-dialog/replacement-dialog.component';
+import { ReplacementDetailsComponent } from './replacement-details/replacement-details.component';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -95,6 +96,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         RefereeEditComponent,
         ReplacementMatchComponent,
         ReplacementDialogComponent,
+        ReplacementDetailsComponent,
     ],
     imports: [
         BrowserModule,
