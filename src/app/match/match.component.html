@@ -47,7 +47,7 @@
 
 <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Show Matches">
-        <table mat-table
+        <table mat-table style="overflow: no-display"
                [dataSource]="matches" multiTemplateDataRows
                class="mat-elevation-z8">
             <ng-container matColumnDef="homeTeam">
@@ -83,7 +83,7 @@
                         <button mat-flat-button color="primary" *ngIf="isAdmin()" [routerLink]="'edit/' + match.id">
                             Edit Match
                         </button>
-                            <button *ngIf="isMyMatches" class="btn-danger" (click)="replaceReferee(match.id)">Replace me</button>
+                            <button mat-flat-button *ngIf="isMyMatches" color="warn" (click)="replaceReferee(match.id)">Replace me</button>
                         </div>
                     </div>
                 </td>

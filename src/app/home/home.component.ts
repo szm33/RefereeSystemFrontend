@@ -21,7 +21,6 @@ export class HomeComponent implements OnInit {
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    this._snackBar.open("Testujemy", null,{duration: 3 * 1000});
   }
 
   getMyMatches(): void {
@@ -32,6 +31,10 @@ export class HomeComponent implements OnInit {
 
   isLoggedIn() {
     return this.authService.isLoggedIn();
+  }
+
+  getUsername() {
+    return this.authService.getUsername();
   }
 
 }

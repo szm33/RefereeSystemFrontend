@@ -1,7 +1,12 @@
-<div class="container">
-    <h1>Welcome</h1>
-    <div *ngIf="isLoggedIn()">
-        <button *ngIf="!matches" (click)="getMyMatches()">My matches</button>
+<div class="main">
+    <mat-card class="example-card">
+    <h1>Welcome {{isLoggedIn() ? getUsername()  : 'Stranger'}}</h1>
+        <mat-card-content>
+
+        <div *ngIf="isLoggedIn()">
+        <button mat-flat-button color="primary" *ngIf="!matches" (click)="getMyMatches()">My matches</button>
         <app-match [matches]="matches" [isMyMatches]="true" *ngIf="matches"></app-match>
     </div>
+        </mat-card-content>
+    </mat-card>
 </div>

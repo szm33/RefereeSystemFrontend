@@ -13,7 +13,6 @@ export class LoggedGuard implements CanActivate {
 
     canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
         if (this.authService.getJwtToken() == null) {
-            debugger;
             this.authService.setRedirectAfterLogin(state.url);
             this.router.navigate(['/login']);
         }

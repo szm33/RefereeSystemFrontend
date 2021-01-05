@@ -3,6 +3,7 @@ import {MatchService} from '../_services/match.service';
 import {Match} from '../model/match';
 import {AuthService} from '../_services/auth.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-match',
@@ -26,14 +27,18 @@ export class MatchComponent{
   isMyMatches: boolean = false;
 
   constructor(private matchService: MatchService,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   show(match: Match): void {
     match.isClicked = !match.isClicked;
   }
 
   replaceReferee(matchId: number) {
-    this.matchService.replaceReferee(matchId).subscribe(() => {} , () => {});
+    this.matchService.replaceReferee(matchId).subscribe(() =>
+      this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
+        this.router.navigate(['/replace'])}),
+        () =>{})
   }
 
   isAdmin() {

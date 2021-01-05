@@ -58,14 +58,14 @@ export class AuthService {
 
   logout() {
     return this.http.post<any>('https://localhost:8443/logout/', {
-      'refreshToken': this.getRefreshToken()
-    }).pipe(
-        tap(() => this.doLogoutUser()),
-        mapTo(true),
-        catchError(error => {
-          alert(error.error);
-          return of(false);
-        }));
+      'refreshToken': this.getRefreshToken()});
+    // }).pipe(
+    //     tap(() => this.doLogoutUser()),
+    //     mapTo(true),
+    //     catchError(error => {
+    //       alert(error.error);
+    //       return of(false);
+    //     }));
   }
 
   isLoggedIn() {
@@ -86,12 +86,11 @@ export class AuthService {
   }
 
   private doLoginUser(username: String, tokens: Tokens) {
-    debugger;
     this.loggedUser = username;
     this.storeTokens(tokens);
   }
 
-  private doLogoutUser() {
+  public doLogoutUser() {
     this.loggedUser = null;
     this.removeTokens();
   }
@@ -105,7 +104,6 @@ export class AuthService {
   }
 
   private storeTokens(tokens: Tokens) {
-    debugger;
     localStorage.setItem(this.JWT_TOKEN, tokens.jwt);
     localStorage.setItem(this.REFRESH_TOKEN, tokens.refreshToken);
   }

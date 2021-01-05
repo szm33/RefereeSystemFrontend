@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../_services/account.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-send-reset-password',
@@ -8,15 +9,18 @@ import {AccountService} from '../_services/account.service';
 })
 export class SendResetPasswordComponent implements OnInit {
 
-  username ='' ;
+  login = '' ;
 
-  constructor(private accountService: AccountService) { }
+  constructor(private accountService: AccountService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
 
   send() {
-    this.accountService.sendResetLink(this.username).subscribe();
+    this.accountService.sendResetLink(this.login).subscribe(
+        () => this.router.navigate(['/login']),
+        () => {});
   }
 
 }

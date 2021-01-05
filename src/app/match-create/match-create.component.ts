@@ -14,13 +14,13 @@ import {DictionaryService} from '../_services/dictionary.service';
 })
 export class MatchCreateComponent implements OnInit {
 
+    now: Date = new Date();
     match: Match = new Match();
     freeReferees: Referee[] = [];
     freeTeams: Team[] = [];
     matchFunctions: MatchFunction[] = [];
 //zrobic jak w modyfikacji ze sprawdza czy team/referee jest po zmianie jesli tak zostawia
     pickDateOfMatch(event) {
-        debugger;
         this.freeTeams = [];
         this.freeReferees = [];
         this.match.dateOfMatch = null;
@@ -29,7 +29,6 @@ export class MatchCreateComponent implements OnInit {
         if (event.value != null) {
             const date = new Date(event.value);
             date.setDate(date.getDate() + 1);
-            debugger;
             this.matchService.getFreeTeamsAndReferees(date).subscribe(data => {
                 this.match.referees.forEach(referee => referee.id = null);
                 data.referees.forEach(referee => this.freeReferees.push(referee));
@@ -42,7 +41,6 @@ export class MatchCreateComponent implements OnInit {
     }
 
     addReferee() {
-        debugger;
         if (this.match.referees.length < this.matchFunctions.length) {
             this.match.referees.push(new Referee());
         }
@@ -58,7 +56,6 @@ export class MatchCreateComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        debugger;
         if (this.dictionaryService.store.matchFunctions.length == 0) {
             this.dictionaryService.getDictionariesObservable().subscribe(dictionaries => this.matchFunctions = dictionaries.matchFunctions);
         } else {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {MatchService} from '../_services/match.service';
 import {ActivatedRoute} from '@angular/router';
 import {Match} from '../model/match';
@@ -6,7 +6,8 @@ import {Match} from '../model/match';
 @Component({
   selector: 'app-referee-matches',
   templateUrl: './referee-matches.component.html',
-  styleUrls: ['./referee-matches.component.css']
+  styleUrls: ['./referee-matches.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class RefereeMatchesComponent implements OnInit {
 

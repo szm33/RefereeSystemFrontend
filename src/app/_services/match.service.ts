@@ -74,7 +74,6 @@ export class MatchService {
     }
 
     confirmReplacement(details: ReplaceInformationsDetails, candidateId: number): Observable<any> {
-        debugger;
         return this.http.post(URL + 'confirmReplacement',
             {
                 replaceInformationsId: details.id,

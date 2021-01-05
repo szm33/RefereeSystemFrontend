@@ -33,7 +33,6 @@ export class AccountDetailsComponent implements OnInit {
   }
 
   modifyMyAccount(): void {
-    debugger;
     this.accountService.modifyMyAccount(this.account)
         .subscribe(() =>
           this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {

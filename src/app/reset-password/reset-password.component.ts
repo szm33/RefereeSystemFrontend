@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../_services/account.service';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-reset-password',
@@ -13,7 +13,8 @@ export class ResetPasswordComponent implements OnInit {
   password: Password = new Password();
 
   constructor(private accountService: AccountService,
-              private route : ActivatedRoute) { }
+              private route : ActivatedRoute,
+              private navigationRouter: Router) { }
 
   ngOnInit(): void {
     this.password.link = this.route.snapshot.params['link'];
@@ -23,7 +24,9 @@ export class ResetPasswordComponent implements OnInit {
   }
 
   resetPassword(): void {
-    this.accountService.resetPassword(this.password).subscribe();
+    this.accountService.resetPassword(this.password).subscribe(
+        () => this.navigationRouter.navigate(['/login']),
+        () => {});
   }
 
 }

@@ -28,7 +28,6 @@ export class RefereeComponent implements OnInit {
   ngOnInit(): void {
     this.refereeService.getAllReferee().subscribe(
       data => {
-        debugger;
         this.referees = data;
       }
     );

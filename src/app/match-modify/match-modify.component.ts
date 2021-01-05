@@ -16,6 +16,7 @@ import {FormControl} from '@angular/forms';
 })
 export class MatchModifyComponent implements OnInit {
 
+    now: Date = new Date();
     match: Match = new Match();
     freeReferees: Referee[] = [];
     matchFunctions: MatchFunction[] = [];
@@ -30,7 +31,6 @@ export class MatchModifyComponent implements OnInit {
 
 
     addReferee() {
-        debugger;
         if (this.match.referees.length < this.matchFunctions.length) {
             this.match.referees.push(new Referee());
         }
@@ -45,7 +45,6 @@ export class MatchModifyComponent implements OnInit {
             .subscribe(data => {
                     console.log(data);
                     this.match = data.match;
-                    debugger;
                     this.match.dateOfMatch = new Date(this.match.dateOfMatch);
                     this.initialDate = this.match.dateOfMatch;
                     this.freeReferees = data.freeReferees;
@@ -68,11 +67,9 @@ export class MatchModifyComponent implements OnInit {
         // this.freeReferees = [];
         // this.match.dateOfMatch = null;
         // this.match.homeTeam = null;
-        debugger;
         if (event.value != null) {
             const date = new Date(event.value);
             date.setDate(date.getDate() + 1);
-            debugger;
             this.matchService.getFreeTeamsAndReferees(date).subscribe(data => {
                 this.freeReferees = data.referees;
                 if (this.initialDate.getTime() == event.value.getTime()) {
@@ -136,7 +133,6 @@ export class MatchModifyComponent implements OnInit {
     }
 
     // selectReferee(event, refe) {
-    //     debugger;
     //     // matchReferee.name = event.name;
     //     // this.matchFunctions.set(matchFunction, event.value);
     // }
@@ -159,7 +155,6 @@ export class MatchModifyComponent implements OnInit {
         console.log(this.match.timeOfMatch);
         this.match.dateOfMatch.setDate(this.match.dateOfMatch.getDate() + 1);
         this.match.referees = this.match.referees.filter(referee => referee.id);
-        debugger;
         //     if (this.date != null) {
         //         this.match.dateOfMatch = [];
         //         this.match.dateOfMatch.push(this.date.toArray()[0]);

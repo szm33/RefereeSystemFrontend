@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import {MatchService} from '../_services/match.service';
 import {Match} from '../model/match';
 import {Referee} from '../model/referee';
-import {ActivatedRoute} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
+import {AuthService} from '../_services/auth.service';
 
 @Component({
   selector: 'app-replacement-details',
@@ -14,17 +15,25 @@ export class ReplacementDetailsComponent implements OnInit {
   replaceInformationsDetails: ReplaceInformationsDetails[] = [];
 
   constructor(private matchService: MatchService,
-              private router: ActivatedRoute) { }
+              private router: ActivatedRoute,
+              private authService: AuthService,
+              private navigationRouter: Router) { }
 
   ngOnInit(): void {
-    debugger;
     this.matchService.getMatchReplaceInformations(this.router.snapshot.params['id']).subscribe(
         details => this.replaceInformationsDetails = details
     , () => {});
   }
 
-  confrimReplacement(details: ReplaceInformationsDetails, candidateId: number): void {
-    this.matchService.confirmReplacement(details, candidateId).subscribe();
+  confirmReplacement(details: ReplaceInformationsDetails, candidateId: number): void {
+    this.matchService.confirmReplacement(details, candidateId).subscribe(() => this.navigationRouter.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
+          this.navigationRouter.navigate(['/replace'])
+        }),
+        () => {});
+  }
+
+  isAdmin(): boolean {
+    return this.authService.isAdmin();
   }
 
 }

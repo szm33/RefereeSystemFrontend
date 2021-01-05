@@ -36,12 +36,10 @@ export class RefereeModifyComponent implements OnInit, OnChanges {
   }
 
   modify() {
-    debugger;
 
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    debugger;
     if ('refereeDetails') {
       this.referee =  Object.assign({}, this.refereeDetails);
     }

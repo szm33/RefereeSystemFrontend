@@ -23,11 +23,9 @@ export class LoginComponent implements OnInit {
               private  router: Router) { }
 
   ngOnInit(): void {
-    debugger;
     if (this.tokenStorage.getToken()) {
       this.isLoggedIn = true;
       this.username = this.tokenStorage.getUser();
-      debugger;
     }
   }
 
@@ -35,14 +33,12 @@ export class LoginComponent implements OnInit {
     this.authService.login({username: this.form.username, password: this.form.password}).subscribe(
       data => {
         console.log(data);
-        // debugger;
         // this.tokenStorage.saveToken(data.token);
         // this.tokenStorage.saveUser(data.username);
         // this.isLoggedIn = true;
         // this.username = data.username;
         if (data) {
           this.isLoginFailed = false;
-          debugger;
           if (this.authService.getRedirectAfterLogin()) {
             this.router.navigate([this.authService.getRedirectAfterLogin()]);
             this.authService.setRedirectAfterLogin(null);
