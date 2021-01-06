@@ -1,12 +1,12 @@
-<h1 mat-dialog-title>Hi {{arrivalTime.id}}</h1>
+<h1 mat-dialog-title>Replacement</h1>
 <div mat-dialog-content>
-    <p>What's your favorite animal?</p>
+    <p>How fast can you arrive?</p>
     <mat-form-field>
-        <mat-label>Favorite Animal</mat-label>
+        <mat-label>Arrival time</mat-label>
         <input type="number" matInput [(ngModel)]="arrivalTime.arrivalTime">
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="onNoClick()">Back</button>
     <button mat-button [mat-dialog-close]="arrivalTime" cdkFocusInitial>Ok</button>
 </div>

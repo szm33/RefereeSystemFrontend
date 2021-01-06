@@ -16,7 +16,6 @@ import {FormControl} from '@angular/forms';
 })
 export class MatchModifyComponent implements OnInit {
 
-    now: Date = new Date();
     match: Match = new Match();
     freeReferees: Referee[] = [];
     matchFunctions: MatchFunction[] = [];
@@ -174,7 +173,7 @@ export class MatchModifyComponent implements OnInit {
         //         }
         //     });
             this.matchService.editMatch(this.match).subscribe(() => this.routerUrl.navigate(['match']),
-                () => window.alert("failed create"));
+                () =>   this.match.dateOfMatch.setDate(this.match.dateOfMatch.getDate() - 1));
     }
 }
 

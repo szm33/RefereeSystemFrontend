@@ -81,7 +81,7 @@ export class MatchCreateComponent implements OnInit {
             this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
                 this.router.navigate(['/match']);
             });
-        }), () => window.alert('failed create');
+        }, () =>   this.match.dateOfMatch.setDate(this.match.dateOfMatch.getDate() - 1));
     }
 
 }
