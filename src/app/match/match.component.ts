@@ -34,6 +34,10 @@ export class MatchComponent{
     match.isClicked = !match.isClicked;
   }
 
+  isReplaceAvailable(match: Match): boolean {
+    return new Date() < new Date(match.dateOfMatch);
+  }
+
   replaceReferee(matchId: number) {
     this.matchService.replaceReferee(matchId).subscribe(() =>
       this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {

@@ -1,12 +1,11 @@
 <div class="main">
-    <mat-card class="example-card">
-    <h1>Welcome {{isLoggedIn() ? getUsername()  : 'Stranger'}}</h1>
-        <mat-card-content>
+
+    <h1 *ngIf="!matches">Welcome {{isLoggedIn() ? getUsername()  : 'Stranger'}}</h1>
 
         <div *ngIf="isLoggedIn()">
         <button mat-flat-button color="primary" *ngIf="!matches" (click)="getMyMatches()">My matches</button>
-        <app-match [matches]="matches" [isMyMatches]="true" *ngIf="matches"></app-match>
+
+
     </div>
-        </mat-card-content>
-    </mat-card>
 </div>
+<app-match [matches]="matches" [isMyMatches]="true" *ngIf="matches"></app-match>

@@ -4,6 +4,7 @@ import {TranslateService} from '@ngx-translate/core';
 import {AuthService} from './_services/auth.service';
 import {Router} from '@angular/router';
 import {DictionaryService} from './_services/dictionary.service';
+import {Location} from '@angular/common';
 
 @Component({
     selector: 'app-root',
@@ -16,7 +17,8 @@ export class AppComponent implements OnInit {
                 private translate: TranslateService,
                 private authService: AuthService,
                 private router: Router,
-                private dictionaryService: DictionaryService) {
+                private dictionaryService: DictionaryService,
+                private location: Location) {
         translate.setDefaultLang('en');
     }
 
@@ -37,6 +39,10 @@ export class AppComponent implements OnInit {
                 this.router.navigate(['/login']);
             }, () => window.alert('Failed logout')
         );
+    }
+
+    back() {
+        this.location.back();
     }
 
     isLoggedIn() {

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {AuthService} from '../_services/auth.service';
 import {Match} from '../model/match';
 import {MatchService} from '../_services/match.service';
@@ -8,7 +8,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+  styleUrls: ['./home.component.css'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class HomeComponent implements OnInit {
 
@@ -21,6 +22,9 @@ export class HomeComponent implements OnInit {
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
+    // this.matchService.getMyMatches()
+    //     .subscribe(data => this.matches = data,
+    //         () => {});
   }
 
   getMyMatches(): void {
