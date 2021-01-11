@@ -23,12 +23,18 @@
             <div *ngIf="match.dateOfMatch != null">
                 <div class="row">
                     <div class="col">
-                        <mat-label>Time of match</mat-label>
-                        <div id="time" class="ngx-timepicker-field-example time-padding">
-                            <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch" #time="ngModel"
-                                                  required></ngx-timepicker-field>
-                        </div>
+
+                            <mat-form-field>
+                                <mat-label>Time of match</mat-label>
+
+                                <input matInput aria-label="24hr format" [ngxTimepicker]="fullTime" [format]="24"
+                                   [(ngModel)]="match.timeOfMatch" #time="ngModel" readonly required>
+                            <ngx-material-timepicker #fullTime></ngx-material-timepicker>
+                            </mat-form-field>
+<!--                            <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch" #time="ngModel"-->
+<!--                                                  required></ngx-timepicker-field>-->
                     </div>
+
                 </div>
 
                 <div class="row">

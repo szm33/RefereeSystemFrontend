@@ -79,7 +79,7 @@ export class MatchCreateComponent implements OnInit {
         this.match.referees = this.match.referees.filter(referee => referee.id);
         this.matchService.createMatch(this.match).subscribe(data => {
             this.router.navigateByUrl('/login', {skipLocationChange: true}).then(() => {
-                this.router.navigate(['/match']);
+                this.router.navigate(['/match/' + data]);
             });
         }, () =>   this.match.dateOfMatch.setDate(this.match.dateOfMatch.getDate() - 1));
     }

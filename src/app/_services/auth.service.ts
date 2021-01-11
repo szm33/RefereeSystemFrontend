@@ -3,9 +3,10 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable, of} from 'rxjs';
 import {catchError, mapTo, tap} from 'rxjs/operators';
 import jwt_decode from 'jwt-decode';
+import {environment} from '../../environments/environment';
 
 
-const AUTH_API = 'https://localhost:8443/login/';
+const URL = environment.backendURL + 'login/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -29,7 +30,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   // login(credentials): any {
-  //   return this.http.post(AUTH_API, {
+  //   return this.http.post(URL, {
   //     username: credentials.username,
   //     password : credentials.password
   //   }, httpOptions);
@@ -47,7 +48,7 @@ export class AuthService {
 
 
   login(user: { username: String, password: String }): Observable<boolean> {
-    return this.http.post<any>(AUTH_API, user)
+    return this.http.post<any>(URL, user)
         .pipe(
             tap(tokens => this.doLoginUser(user.username, tokens)),
             mapTo(true),
@@ -125,8 +126,12 @@ export class AuthService {
     return this.getDecodedToken().sub;
   }
 
-  public isAdmin() : boolean{
+  public isAdmin(): boolean {
     return this.isLoggedIn() ? !!this.getDecodedToken().roles.find(token => token.authority == 'ROLE_ADMIN') : false;
+  }
+
+  public getId(): number {
+    return this.isLoggedIn() ? this.getDecodedToken().id : null;
   }
 
 }
@@ -139,4 +144,5 @@ export class AuthService {
 class Token {
   sub: String;
   roles: { authority: String}[];
+  id: number;
 }

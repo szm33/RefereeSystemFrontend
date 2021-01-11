@@ -4,3 +4,15 @@
     font-weight: bold;
     font-size: 20px;
 }
+.mat-snack-bar-container {
+    max-width: 800px;
+    background-color: #f44336;
+    color: white;
+}
+.mat-simple-snackbar {
+    font-size: 20px;
+}
+span {
+    margin-left: auto;
+    margin-right: auto;
+}

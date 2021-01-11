@@ -3,8 +3,9 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Team} from '../model/team';
 import {League} from '../model/league';
+import {environment} from '../../environments/environment';
 
-const URL = 'https://localhost:8443/team/';
+const URL = environment.backendURL + 'team/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})

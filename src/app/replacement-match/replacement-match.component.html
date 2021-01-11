@@ -37,7 +37,7 @@
                             color="primary" (click)="openDialog(match.replaceId)">Replace this referee</button>
                     <button *ngIf="match.refereeCandidate" mat-flat-button
                             color="warn" (click)="resign(match.replaceId)">Resign</button>
-                    <button style="margin-left: 1%" mat-flat-button color="primary" [routerLink]="match.id">Details</button>
+                    <button style="margin-left: 1%" mat-flat-button color="primary" [routerLink]="'details/' + match.id">Details</button>
                 </div>
             </div>
         </td>

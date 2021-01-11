@@ -6,8 +6,9 @@ import {MatchFunction} from '../model/matchFunction';
 import {MatchToReplaceInformations} from '../replacement-match/replacement-match.component';
 import {ArrivalTime} from '../arrival-time-picker/arrival-time-picker.component';
 import {ReplaceInformationsDetails} from '../replacement-details/replacement-details.component';
+import {environment} from '../../environments/environment';
 
-const URL = 'https://localhost:8443/match/';
+const URL = environment.backendURL + 'match/';
 
 const httpOptions = {
     headers: new HttpHeaders({'Content-Type': 'application/json'})

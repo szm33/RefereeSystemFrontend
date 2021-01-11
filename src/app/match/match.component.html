@@ -80,10 +80,10 @@
                             <div>{{match.description }}</div>
                             </div>
 
-                        <button mat-flat-button color="primary" *ngIf="isAdmin()" [routerLink]="'edit/' + match.id">
+                        <button mat-flat-button color="primary" *ngIf="isAdmin()" [routerLink]="'/match/edit/' + match.id">
                             Edit Match
                         </button>
-                            <button mat-flat-button *ngIf="isMyMatches && isReplaceAvailable(match)" color="warn" (click)="replaceReferee(match.id)">Replace me</button>
+                            <button mat-flat-button *ngIf="isReplaceAvailable(match)" color="warn" (click)="replaceReferee(match.id)">Replace me</button>
                         </div>
                     </div>
                 </td>

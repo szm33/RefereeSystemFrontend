@@ -47,7 +47,9 @@ export class ErrorInterceptor implements HttpInterceptor {
 
           } else {
               if (error.status == 422) {
-                  this._snackBar.open(error.error.value, null, {duration: 5 * 1000});
+                  this._snackBar.open(error.error.value, null, {duration: 5 * 1000,
+                      horizontalPosition: 'center',
+                      verticalPosition: 'top',});
               }
               else if (error.status == 403) {
                   // this.authService.removeJwtToken();

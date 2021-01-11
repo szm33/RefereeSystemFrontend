@@ -6,7 +6,7 @@ import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
 import {ArrivalTime} from '../arrival-time-picker/arrival-time-picker.component';
 import {ReplacementDialogComponent} from './replacemnet-dialog/replacement-dialog.component';
-import {Router} from '@angular/router';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
     selector: 'app-replacement-match',
@@ -29,7 +29,8 @@ export class ReplacementMatchComponent implements OnInit {
     constructor(private matchService: MatchService,
                 private authService: AuthService,
                 public dialog: MatDialog,
-                private router: Router) {
+                private router: Router,
+                private activeRoute: ActivatedRoute) {
     }
 
     sendArrivalTime(arrivalTime: ArrivalTime) {
@@ -50,8 +51,17 @@ export class ReplacementMatchComponent implements OnInit {
                 info.match.replaceFunction = info.replaceFunction;
                 info.match.replaceId = info.id;
                 info.match.refereeCandidate = info.refereeCandidate;
+                this.matches = replaceInformations.map(info => info.match);
+
+                if (this.activeRoute.snapshot.params["id"]) {
+                    this.pickedMatch = this.matches.find(match => match.replaceId == this.activeRoute.snapshot.params["id"]);
+                    if (this.pickedMatch) {
+                        this.matches = this.matches.filter(match => match.replaceId != this.pickedMatch.replaceId);
+                        this.matches.unshift(this.pickedMatch);
+                    }
+
+                }
             });
-            this.matches = replaceInformations.map(info => info.match);
             console.log(this.matches);
         });
     }

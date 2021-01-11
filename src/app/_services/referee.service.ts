@@ -2,8 +2,9 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Referee} from '../model/referee';
+import {environment} from '../../environments/environment';
 
-const URL = 'https://localhost:8443/referee/';
+const URL = environment.backendURL + 'referee/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})
@@ -35,6 +36,7 @@ export class RefereeService {
   }
 
   modifyReferee(referee: Referee): Observable<Referee> {
+    referee.id = null;
     return this.http.put<Referee>(URL, referee, httpOptions);
   }
 

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, ViewEncapsulation} from '@angular/core';
 import {TokenStorageService} from './_services/token-storage.service';
 import {TranslateService} from '@ngx-translate/core';
 import {AuthService} from './_services/auth.service';
@@ -9,7 +9,8 @@ import {Location} from '@angular/common';
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
+    encapsulation: ViewEncapsulation.None,
 })
 export class AppComponent implements OnInit {
 
@@ -23,22 +24,24 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.authService.locale().subscribe(
-            data => {
-                console.log(data);
-                this.translate.use(data.value);
-            });
-        this.dictionaryService.getDictionaries();
+        const userLang = navigator.language;
+        this.translate.use(userLang);
+        // this.authService.locale().subscribe(
+        //     data => {
+        //         console.log(data);
+        //         this.translate.use(data.value);
+        //     });
+        // this.dictionaryService.getDictionaries();
 
     }
 
     logout(): void {
         this.authService.logout().subscribe(
             () => {
-                this.authService.doLogoutUser();
-                this.router.navigate(['/login']);
-            }, () => window.alert('Failed logout')
+            }, () => {}
         );
+        this.authService.doLogoutUser();
+        this.router.navigate(['/login']);
     }
 
     back() {

@@ -2,6 +2,7 @@
   "Title": "Translation example",
   "Intro": "Hello I am Arthur, I am 42 years old.",
   "Sth went wrong": "Coś poszło nie tak",
-  "No privileges": "Nie masz uprawnień do tego działania"
+  "No privileges": "Nie masz uprawnień do tego działania",
+  "Welcome": "Witaj"
 
 }

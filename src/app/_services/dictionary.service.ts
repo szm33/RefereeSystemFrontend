@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Store} from '../model/store';
 import {Observable} from 'rxjs';
+import {environment} from '../../environments/environment';
 
 
-const URL = 'https://localhost:8443/dictionaries/';
+const URL = environment.backendURL + 'dictionaries/';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json'})

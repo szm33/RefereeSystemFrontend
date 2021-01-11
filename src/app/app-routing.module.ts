@@ -45,6 +45,7 @@ const routes: Routes = [
     canActivate: [AdminGuard]
   },
   { path: 'match', component: AllMatchComponent },
+  { path: 'match/:id', component: AllMatchComponent },
   {
     path: 'match/edit/:id', component: MatchModifyComponent,
     canActivate: [LoggedGuard]
@@ -67,7 +68,11 @@ const routes: Routes = [
     canActivate: [LoggedGuard]
   },
   {
-    path: 'replace/:id', component: ReplacementDetailsComponent,
+    path: 'replace/:id', component: ReplacementMatchComponent,
+    canActivate: [LoggedGuard]
+  },
+  {
+    path: 'replace/details/:id', component: ReplacementDetailsComponent,
     canActivate: [LoggedGuard]
   },
 ];
