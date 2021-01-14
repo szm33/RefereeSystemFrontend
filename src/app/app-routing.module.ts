@@ -17,7 +17,6 @@ import {MatchCreateComponent} from './match-create/match-create.component';
 import {AllMatchComponent} from './all-match/all-match.component';
 import {RefereeMatchesComponent} from './referee-matches/referee-matches.component';
 import {MatchModifyComponent} from './match-modify/match-modify.component';
-import {ArrivalTimePickerComponent} from './arrival-time-picker/arrival-time-picker.component';
 import {AuthGuard} from './_helpers/guards/AuthGuard';
 import {LoggedGuard} from './_helpers/guards/LoggedGuard';
 import {AdminGuard} from './_helpers/guards/AdminGuard';

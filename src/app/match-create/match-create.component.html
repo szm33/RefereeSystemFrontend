@@ -1,11 +1,11 @@
 <div class="main">
     <mat-card class="example-card">
-        <h1 class="title">Create match</h1>
+        <h1 class="title">{{'Create match' | translate}}</h1>
         <mat-card-content>
             <div class="row">
                 <div class="col">
                     <mat-form-field color="accent" appearance="fill">
-                        <mat-label>Date of match</mat-label>
+                        <mat-label>{{'Date of match' | translate}}</mat-label>
                         <input matInput [min]="now" [matDatepicker]="picker1" [(ngModel)]="match.dateOfMatch"
                                (dateChange)="pickDateOfMatch($event)" #date="ngModel" required>
                         <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
@@ -14,7 +14,7 @@
                     <div *ngIf="date.invalid && date.touched"
                          class="alert alert-danger custom-error">
                         <div *ngIf="date.errors.required">
-                            This filed is required
+                            {{'This field is required' | translate}}
                         </div>
                     </div>
                 </div>
@@ -24,22 +24,16 @@
                 <div class="row">
                     <div class="col">
                         <mat-form-field>
-                            <mat-label>Time of match</mat-label>
+                            <mat-label>{{'Time of match' | translate}}</mat-label>
 
                             <input matInput aria-label="24hr format" [ngxTimepicker]="fullTime" [format]="24"
                                    [(ngModel)]="match.timeOfMatch" #time="ngModel" readonly required>
                             <ngx-material-timepicker #fullTime></ngx-material-timepicker>
                         </mat-form-field>
-<!--                        <mat-label>Time of match</mat-label>-->
-<!--                        <div id="time" class="ngx-timepicker-field-example time-padding">-->
-<!--                            <ngx-timepicker-field [format]="24" [(ngModel)]="match.timeOfMatch"-->
-<!--                            #time="ngModel" required>-->
-<!--                            </ngx-timepicker-field>-->
-<!--                        </div>-->
                         <div *ngIf="time.invalid && time.touched"
                              class="alert alert-danger custom-error">
                             <div *ngIf="time.errors.required">
-                                This filed is required
+                                {{'This field is required' | translate}}
                             </div>
                         </div>
                     </div>
@@ -47,10 +41,10 @@
 
                 <div class="row">
                     <div class="col">
-                        <mat-label>Home Team</mat-label>
+                        <mat-label>{{'Home team' | translate}}</mat-label>
                         <br/>
                         <mat-form-field appearance="fill">
-                            <mat-label>Choose team</mat-label>
+                            <mat-label>{{'Choose team' | translate}}</mat-label>
                             <mat-select [(ngModel)]="match.homeTeam" #home="ngModel" required>
                                 <mat-option *ngFor="let team of freeTeams" [value]="team">{{team.name}}</mat-option>
                             </mat-select>
@@ -58,16 +52,16 @@
                         <div *ngIf="home.invalid && home.touched"
                              class="alert alert-danger custom-error">
                             <div *ngIf="home.errors.required">
-                                This filed is required
+                                {{'This field is required' | translate}}
                             </div>
                         </div>
                     </div>
 
                     <div class="col">
-                        <mat-label>Away Team</mat-label>
+                        <mat-label>{{'Away team' | translate}}</mat-label>
                         <br/>
                         <mat-form-field appearance="fill">
-                            <mat-label>Choose team</mat-label>
+                            <mat-label>{{'Choose team' | translate}}</mat-label>
                             <mat-select [(ngModel)]="match.awayTeam" #away="ngModel" required>
                                 <mat-option *ngFor="let team of freeTeams" [value]="team">{{team.name}}</mat-option>
                             </mat-select>
@@ -75,7 +69,7 @@
                         <div *ngIf="away.invalid && away.touched"
                              class="alert alert-danger custom-error">
                             <div *ngIf="away.errors.required">
-                                This filed is required
+                                {{'This field is required' | translate}}
                             </div>
                         </div>
                     </div>
@@ -83,7 +77,7 @@
                 <div class="row" *ngFor="let referee of match.referees">
                     <div class="col">
                         <mat-form-field appearance="fill">
-                            <mat-label>Choose function</mat-label>
+                            <mat-label>{{'Choose function' | translate}}</mat-label>
                             <mat-select [(value)]="referee.function">
                                 <mat-option *ngFor="let matchFunction of matchFunctions"
                                             [value]="matchFunction.functionName">{{matchFunction.functionName}}</mat-option>
@@ -92,7 +86,7 @@
                     </div>
                     <div class="col">
                         <mat-form-field appearance="fill">
-                            <mat-label>Choose referee</mat-label>
+                            <mat-label>{{'Choose referee' | translate}}</mat-label>
                             <mat-select [(value)]="referee.id">
                                 <mat-option *ngFor="let freeReferee of freeReferees"
                                             [value]="freeReferee.id">{{freeReferee.name}} {{freeReferee.surname}}</mat-option>
@@ -100,27 +94,27 @@
                         </mat-form-field>
                     </div>
                     <div class="col">
-                        <button class="remove" mat-flat-button color="accent" (click)="removeReferee(referee)">Remove
-                            referee
+                        <button class="remove" mat-flat-button color="accent" (click)="removeReferee(referee)">
+                            {{'Remove referee' | translate}}
                         </button>
                     </div>
                 </div>
                 <div *ngIf="match.referees.length < matchFunctions.length" class="row">
                     <div class="col create">
-                        <button mat-flat-button color="primary" (click)="addReferee()">Add referee</button>
+                        <button mat-flat-button color="primary" (click)="addReferee()">{{'Add referee' | translate}}</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col">
                         <mat-form-field>
-                            <mat-label>Description</mat-label>
+                            <mat-label>{{'Description' | translate}}</mat-label>
                             <input name="description" type="text" matInput [(ngModel)]="match.description"
                                    pattern="^[a-zA-Z_0-9:,?/@() ]+$" #description="ngModel">
                         </mat-form-field>
                         <div *ngIf="description.invalid && description.touched"
                              class="alert alert-danger custom-error">
                             <div *ngIf="description.errors.pattern">
-                                Invalid pattern
+                                {{'This field contains characters that are not allowed' | translate}}
                             </div>
                         </div>
                     </div>
@@ -128,7 +122,7 @@
                 <div class="row">
                     <div class="col create">
                         <button [disabled]="date.invalid || time.invalid || home.invalid || away.invalid || description.invalid"
-                                mat-flat-button color="primary" (click)="createMatch()">Create</button>
+                                mat-flat-button color="primary" (click)="createMatch()">{{'Create match' | translate}}</button>
                     </div>
                 </div>
             </div>

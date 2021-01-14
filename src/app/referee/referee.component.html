@@ -1,10 +1,10 @@
 <mat-tab-group mat-align-tabs="center">
-    <mat-tab label="Show Teams">
+    <mat-tab [label]="'Referees' | translate">
         <table mat-table
                [dataSource]="referees" multiTemplateDataRows
                class="mat-elevation-z8">
             <ng-container matColumnDef="{{column}}" *ngFor="let column of columnsToDisplay">
-                <th mat-header-cell *matHeaderCellDef> {{column}} </th>
+                <th mat-header-cell *matHeaderCellDef> {{column | translate}} </th>
                 <td mat-cell *matCellDef="let element"> {{element[column]}} </td>
             </ng-container>
 
@@ -14,14 +14,14 @@
                     <div class="example-element-detail"
                          [@detailExpand]="referee == pickedReferee ? 'expanded' : 'collapsed'">
                         <button mat-flat-button color="primary" [routerLink]="referee.id">
-                          Details Referee
+                            {{'Details referee' | translate}}
                         </button>
                         <button mat-flat-button color="primary" *ngIf="isAdmin()" [routerLink]="'edit/' + referee.id">
-                            Edit Referee
+                            {{'Edit referee' | translate}}
                         </button>
                         <button mat-flat-button [color]="referee.active ? 'warn' : 'accent'" *ngIf="isAdmin()"
                                 (click)="changeActiveStatus(referee)">
-                            {{ referee.active ? 'Inactived' : 'Actived' | translate}}
+                            {{ referee.active ? ('Inactive' | translate) : 'Active' | translate}}
                         </button>
                     </div>
                 </td>
@@ -36,7 +36,7 @@
             <tr mat-row *matRowDef="let row; columns: ['expandedDetail']" class="example-detail-row"></tr>
         </table>
     </mat-tab>
-    <mat-tab *ngIf="isAdmin()" label="Add Referee">
+    <mat-tab *ngIf="isAdmin()" [label]="'Add referee' | translate">
         <app-referee-create></app-referee-create>
     </mat-tab>
 </mat-tab-group>

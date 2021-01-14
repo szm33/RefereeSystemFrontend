@@ -3,38 +3,38 @@
     <a href="#" class="navbar-brand">Referee System</a>
     <ul class="navbar-nav mr-auto" routerLinkActive="active">
       <li class="nav-item">
-        <a href="/home" class="nav-link" routerLink="home">Home </a>
+        <a href="/home" class="nav-link" routerLink="home">{{'Home' | translate}}</a>
       </li>
       <li *ngIf="isLoggedIn()" class="nav-item">
-        <a href="/account" class="nav-link" routerLink="account">My account</a>
+        <a href="/account" class="nav-link" routerLink="account">{{'My account' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a href="/referee" class="nav-link" routerLink="referee">Referees</a>
+        <a href="/referee" class="nav-link" routerLink="referee">{{'Referees' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a href="/team" class="nav-link" routerLink="team">Teams</a>
+        <a href="/team" class="nav-link" routerLink="team">{{'Teams' | translate}}</a>
       </li>
       <li class="nav-item">
-        <a href="/match" class="nav-link" routerLink="match">Matches</a>
+        <a href="/match" class="nav-link" routerLink="match">{{'Matches' | translate}}</a>
       </li>
       <li *ngIf="isLoggedIn()" class="nav-item">
-        <a href="/replace" class="nav-link" routerLink="replace">Replacements</a>
+        <a href="/replace" class="nav-link" routerLink="replace">{{'Replacements' | translate}}</a>
       </li>
     </ul>
 
     <ul *ngIf="!isLoggedIn()" class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href="/login" class="nav-link" routerLink="login">Login</a>
+        <a href="/login" class="nav-link" routerLink="login">{{'Login' | translate}}</a>
       </li>
     </ul>
 
     <ul *ngIf="isLoggedIn()" class="navbar-nav ml-auto">
       <li class="nav-item">
-        <a href class="nav-link" (click)="logout()">LogOut</a>
+        <a href class="nav-link" (click)="logout()">{{"LogOut" | translate}}</a>
       </li>
     </ul>
   </nav>
-  <a class="nav-link back" (click)="back()">< Back</a>
+  <a class="nav-link back" (click)="back()">< {{'Back' | translate}}</a>
 
   <div class="container">
     <router-outlet></router-outlet>

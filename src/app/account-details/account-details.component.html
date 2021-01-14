@@ -1,13 +1,13 @@
 <div class="main">
     <mat-tab-group mat-align-tabs="center">
-        <mat-tab label="Account Details">
+        <mat-tab [label]="'Account details' | translate">
             <mat-card class="example-card">
-                <h1 class="title">{{'Account details' | uppercase}}</h1>
+                <h1 class="title">{{'Account details'  | translate | uppercase}}</h1>
                 <mat-card-content>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <mat-label>Username</mat-label>
+                                <mat-label>{{ 'Username' | translate}}</mat-label>
                                 <input type="text" matInput [(ngModel)]="account.username"
                                        readonly required #name="ngModel">
                             </mat-form-field>
@@ -24,7 +24,7 @@
                         <div class="col">
                             <!--                        <mat-list-item style="padding-top: 3%">-->
                             <mat-form-field class="full-width">
-                                <mat-label>Email</mat-label>
+                                <mat-label>{{ 'Email' | translate}}</mat-label>
                                 <input name="email" type="text" matInput [(ngModel)]="account.email" #email="ngModel"
                                        required email>
                             </mat-form-field>
@@ -32,10 +32,10 @@
                             <div *ngIf="email.invalid && (email.dirty || email.touched)"
                                  class="alert alert-danger custom-error">
                                 <div *ngIf="email.errors.required">
-                                    Email is required.
+                                    {{'This field is required' | translate}}
                                 </div>
                                 <div *ngIf="email.errors.email">
-                                    Invalid pattern of email
+                                    {{'This field contains characters that are not allowed' | translate}}
                                 </div>
                             </div>
                         </div>
@@ -44,7 +44,7 @@
                     <div class="row">
                         <div class="col">
                             <button [disabled]="email.invalid || name.invalid" mat-flat-button color="primary"
-                                    (click)="modifyMyAccount()">Modify
+                                    (click)="modifyMyAccount()">{{'Modify' | translate}}
                             </button>
                         </div>
                     </div>
@@ -52,24 +52,24 @@
             </mat-card>
         </mat-tab>
 
-        <mat-tab label="Change Password">
+        <mat-tab [label]="'Change Password' | translate">
             <mat-card class="example-card">
-                <h1 class="title">{{'Change password' | uppercase}}</h1>
+                <h1 class="title">{{'Change password' | translate | uppercase}}</h1>
                 <mat-card-content>
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <mat-label>Old Password</mat-label>
+                                <mat-label>{{'Old Password' | translate}}</mat-label>
                                 <input type="password" matInput [(ngModel)]="password.oldPassword"
                                        required  minlength="8" #oldPassword="ngModel">
                             </mat-form-field>
                             <div *ngIf="oldPassword.invalid && oldPassword.touched"
                                  class="alert alert-danger custom-error">
                                 <div *ngIf="oldPassword.errors.required">
-                                    This filed is required
+                                    {{'This field is required' | translate}}
                                 </div>
                                 <div *ngIf="oldPassword.errors.minlength && oldPassword.dirty">
-                                    Password must have minimum 8 characters
+                                    {{'This field must have min. 8 characters' | translate}}
                                 </div>
                             </div>
                         </div>
@@ -77,17 +77,17 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <mat-label>New Password</mat-label>
+                                <mat-label>{{'New Password' | translate}}</mat-label>
                                 <input type="password" matInput [(ngModel)]="password.newPassword"
                                        required minlength="8" #newPassword="ngModel">
                             </mat-form-field>
                             <div *ngIf="newPassword.invalid && newPassword.touched"
                                  class="alert alert-danger custom-error">
                                 <div *ngIf="newPassword.errors.required">
-                                    This filed is required
+                                    {{'This field is required' | translate}}
                                 </div>
                                 <div *ngIf="newPassword.errors.minlength && newPassword.dirty">
-                                    Password must have minimum 8 characters
+                                    {{'This field must have min. 8 characters' | translate}}
                                 </div>
                             </div>
                         </div>
@@ -95,17 +95,17 @@
                     <div class="row">
                         <div class="col">
                             <mat-form-field class="full-width">
-                                <mat-label>Confirm Password</mat-label>
+                                <mat-label>{{'Confirm Password' | translate}}</mat-label>
                                 <input type="password" matInput [(ngModel)]="password.confirmedPassword"
                                        required minlength="8" #confirmedPassword="ngModel">
                             </mat-form-field>
                             <div *ngIf="confirmedPassword.invalid && confirmedPassword.touched"
                                  class="alert alert-danger custom-error">
                                 <div *ngIf="confirmedPassword.errors.required">
-                                    This filed is required
+                                    {{'This field is required' | translate}}
                                 </div>
                                 <div *ngIf="confirmedPassword.errors.minlength && confirmedPassword.dirty">
-                                    Password must have minimum 8 characters
+                                    {{'This field must have min. 8 characters' | translate}}
                                 </div>
                             </div>
                         </div>
@@ -113,7 +113,7 @@
                     <div class="row">
                         <div class="col">
                             <button [disabled]="confirmedPassword.invalid || oldPassword.invalid || newPassword.invalid"
-                                    mat-flat-button color="primary" (click)="changePassword()">Change Password</button>
+                                    mat-flat-button color="primary" (click)="changePassword()">{{'Change Password' | translate}}</button>
                         </div>
                     </div>
                 </mat-card-content>

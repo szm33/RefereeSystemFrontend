@@ -1,12 +1,12 @@
 <h1 mat-dialog-title>Replacement</h1>
 <div mat-dialog-content>
-    <p>How fast can you arrive?</p>
+    <p>{{'How fast can you arrive' | translate}}?</p>
     <mat-form-field>
-        <mat-label>Arrival time</mat-label>
+        <mat-label>{{'Arrival time' | translate}}</mat-label>
         <input type="number" matInput [(ngModel)]="arrivalTime.arrivalTime">
     </mat-form-field>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Back</button>
-    <button mat-button [mat-dialog-close]="arrivalTime" cdkFocusInitial>Ok</button>
+    <button mat-button (click)="onNoClick()">{{'Back' | translate}}</button>
+    <button mat-button [mat-dialog-close]="arrivalTime" cdkFocusInitial>{{'Confirm' | translate}}</button>
 </div>

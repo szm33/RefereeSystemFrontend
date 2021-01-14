@@ -1,69 +1,69 @@
 <mat-card class="example-card">
-    <h1 class="title">{{header | uppercase}}</h1>
+    <h1 class="title">{{header | translate | uppercase}}</h1>
     <form class="form">
         <mat-card-content>
             <div *ngIf="header.startsWith('Add')">
                 <mat-form-field class="full-width">
-                    <mat-label>Username</mat-label>
+                    <mat-label>{{'Username' | translate}}</mat-label>
                     <input name="username" type="text" matInput [(ngModel)]="referee.username"
                            #username="ngModel" required pattern="^[a-zA-Z0-9]+$">
                 </mat-form-field>
                 <div *ngIf="username.invalid && username.touched"
                      class="alert alert-danger custom-error">
                     <div *ngIf="username.errors.required">
-                        This filed is required
+                        {{'This field is required' | translate}}
                     </div>
                     <div *ngIf="username.errors.pattern">
-                        zły pattern
+                        {{'This field contains characters that are not allowed' | translate}}
                     </div>
                 </div>
             </div>
 
             <mat-form-field class="full-width">
-                <mat-label>Name</mat-label>
+                <mat-label>{{'Name' | translate}}</mat-label>
                 <input name="name" type="text" matInput #name="ngModel" [(ngModel)]="referee.name"
                        required pattern="^[a-zA-Z]+$">
             </mat-form-field>
             <div *ngIf="name.invalid && name.touched"
                  class="alert alert-danger custom-error">
                 <div *ngIf="name.errors.required">
-                    This filed is required
+                    {{'This field is required' | translate}}
                 </div>
                 <div *ngIf="name.errors.pattern">
-                    zły pattern
+                    {{'This field contains characters that are not allowed' | translate}}
                 </div>
             </div>
 
             <mat-form-field class="full-width">
-                <mat-label>Surname</mat-label>
+                <mat-label>{{'Surname' | translate}}</mat-label>
                 <input name="surname" #surname="ngModel" type="text" matInput [(ngModel)]="referee.surname"
                        required pattern="^[a-zA-Z]+$">
             </mat-form-field>
             <div *ngIf="surname.invalid && surname.touched"
                  class="alert alert-danger custom-error">
                 <div *ngIf="surname.errors.required">
-                    This filed is required
+                    {{'This field is required' | translate}}
                 </div>
                 <div *ngIf="surname.errors.pattern">
-                    zły pattern
+                    {{'This field contains characters that are not allowed' | translate}}
                 </div>
             </div>
             <mat-form-field class="full-width">
-                <mat-label>Email</mat-label>
+                <mat-label>{{'Email' | translate}}</mat-label>
                 <input name="email" #email="ngModel" type="text" matInput [(ngModel)]="referee.email"
                        required email>
             </mat-form-field>
             <div *ngIf="email.invalid && email.touched"
                  class="alert alert-danger custom-error">
                 <div *ngIf="email.errors.required">
-                    This filed is required
+                    {{'This field is required' | translate}}
                 </div>
                 <div *ngIf="email.errors.email">
-                    Bad email
+                    {{'This field contains characters that are not allowed' | translate}}
                 </div>
             </div>
             <mat-form-field appearance="fill">
-                <mat-label>League</mat-label>
+                <mat-label>{{'License' | translate}}</mat-label>
                 <mat-select name="license" [(ngModel)]="referee.license" #license="ngModel" required>
                     <mat-option *ngFor="let license of licenses" [value]="license.type">
                         {{license.type}}
@@ -73,13 +73,13 @@
             <div *ngIf="license.invalid && license.touched"
                  class="alert alert-danger custom-error">
                 <div *ngIf="license.errors.required">
-                    This filed is required
+                    {{'This field is required' | translate}}
                 </div>
             </div>
             <div class="row">
                 <button [disabled]="name.invalid || license.invalid || surname.invalid || email.invalid || isUsernameInvalid()"
                         style="margin-left: 45%" mat-flat-button color="primary"
-                        (click)="emitData()">{{header}}</button>
+                        (click)="emitData()">{{header | translate}}</button>
             </div>
         </mat-card-content>
     </form>

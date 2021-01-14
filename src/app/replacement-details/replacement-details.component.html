@@ -1,22 +1,22 @@
 <div class="main">
     <mat-card class="example-card">
-        <h1 class="title">Match replacement details</h1>
+        <h1 class="title">{{'Match replacements details' | translate}}</h1>
         <mat-card-content>
             <mat-list *ngFor="let replaceInformationsDetail of replaceInformationsDetails">
                 <mat-list-item>
-                    <h1>Replace for {{replaceInformationsDetail.refereeName}}</h1>
+                    <h1>{{'Replacement for' | translate}} {{replaceInformationsDetail.refereeName}}</h1>
                 </mat-list-item>
                 <mat-list-item>
-                    <div class="col" style="font-weight: bold">Referee for replacement</div>
-                    <div class="col" style="font-weight: bold">Arrival time</div>
-                    <div *ngIf="isAdmin()" class="col" style="font-weight: bold">Confirmation</div>
+                    <div class="col" style="font-weight: bold">{{'Referee for replacement' | translate}}</div>
+                    <div class="col" style="font-weight: bold">{{'Arrival time' | translate}}</div>
+                    <div *ngIf="isAdmin()" class="col" style="font-weight: bold">{{'Confirmation' | translate}}</div>
                 </mat-list-item>
                 <mat-list-item *ngFor="let referee of replaceInformationsDetail.refereesForReplacement">
                     <div class="col"> {{ referee.name }}</div>
                     <div class="col"> {{ referee.arrivalTime }}</div>
                     <div *ngIf="isAdmin()" class="col">
                         <button mat-flat-button color="primary"
-                                (click)="confirmReplacement(replaceInformationsDetail, referee.id)">Confirm
+                                (click)="confirmReplacement(replaceInformationsDetail, referee.id)">{{'Confirm' | translate}}
                         </button>
                     </div>
                 </mat-list-item>

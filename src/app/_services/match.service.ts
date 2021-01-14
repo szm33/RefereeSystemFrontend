@@ -4,9 +4,9 @@ import {Observable} from 'rxjs';
 import {Match} from '../model/match';
 import {MatchFunction} from '../model/matchFunction';
 import {MatchToReplaceInformations} from '../replacement-match/replacement-match.component';
-import {ArrivalTime} from '../arrival-time-picker/arrival-time-picker.component';
 import {ReplaceInformationsDetails} from '../replacement-details/replacement-details.component';
 import {environment} from '../../environments/environment';
+import {ArrivalTime} from '../model/arrivalTime';
 
 const URL = environment.backendURL + 'match/';
 

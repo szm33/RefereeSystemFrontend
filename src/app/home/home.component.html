@@ -1,9 +1,9 @@
 <div class="main">
 
-    <h1 *ngIf="!matches">{{'Welcome' | translate}} {{isLoggedIn() ? getUsername()  : 'Stranger'}}</h1>
+    <h1 *ngIf="!matches">{{'Welcome' | translate}} {{isLoggedIn() ? getUsername()  : 'Stranger' | translate}}</h1>
 
         <div *ngIf="isLoggedIn()">
-        <button mat-flat-button color="primary" *ngIf="!matches" (click)="getMyMatches()">My matches</button>
+        <button mat-flat-button color="primary" *ngIf="!matches" (click)="getMyMatches()">{{'My matches' | translate}}</button>
 
     </div>
 </div>

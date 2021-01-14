@@ -1,24 +1,24 @@
 <div class="main">
     <mat-card class="example-card">
         <mat-card-header>
-            <mat-card-title>Details of {{referee.name | uppercase}} {{referee.surname | uppercase}} </mat-card-title>
+            <mat-card-title>{{'Details of' | translate}} {{referee.name | uppercase}} {{referee.surname | uppercase}} </mat-card-title>
         </mat-card-header>
         <mat-card-content>
             <mat-list>
                 <mat-list-item *ngIf="isAdmin()">
-                    <mat-label>Username:</mat-label>
+                    <mat-label>{{'Username' | translate}}:</mat-label>
                     <div class="text-padding"> {{ referee.username }}</div>
                 </mat-list-item>
                 <mat-list-item *ngIf="isLoggedIn()">
-                    <mat-label>Email:</mat-label>
+                    <mat-label>{{'Email' | translate}}:</mat-label>
                     <div class="text-padding"> {{ referee.email }}</div>
                 </mat-list-item>
                 <mat-list-item>
-                    <mat-label>License:</mat-label>
+                    <mat-label>{{'License' | translate}}:</mat-label>
                     <div class="text-padding"> {{ referee.license }}</div>
                 </mat-list-item>
             </mat-list>
-            <button mat-flat-button color="primary" [routerLink]="'/match/referee/' + referee.id">Referee Matches</button>
+            <button mat-flat-button color="primary" [routerLink]="'/match/referee/' + referee.id">{{'Referee matches' | translate}}</button>
         </mat-card-content>
     </mat-card>
 </div>

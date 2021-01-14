@@ -10,7 +10,6 @@ import {HomeComponent} from './home/home.component';
 
 import {errorInterceptorProviders} from './_helpers/error.interceptor';
 import {RefereeComponent} from './referee/referee.component';
-import {RefereeModalComponent} from './referee-modal/referee-modal.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
@@ -21,7 +20,6 @@ import {HttpClientModule, HttpClient, HTTP_INTERCEPTORS} from '@angular/common/h
 import {ErrorComponent} from './error/error.component';
 import {PrivilegesComponent} from './privileges/privileges.component';
 import {RefereeDetailsComponent} from './referee-details/referee-details.component';
-import {RefereeModifyComponent} from './referee-modify/referee-modify.component';
 import {AccountDetailsComponent} from './account-details/account-details.component';
 import {TeamComponent} from './team/team.component';
 import {ResetPasswordComponent} from './reset-password/reset-password.component';
@@ -29,19 +27,15 @@ import {SendResetPasswordComponent} from './send-reset-password/send-reset-passw
 import {TeamEditComponent} from './team-edit/team-edit.component';
 import {MatchComponent} from './match/match.component';
 import {MatchCreateComponent} from './match-create/match-create.component';
-import {MatchDetailsComponent} from './match-details/match-details.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatSliderModule} from '@angular/material/slider';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatButtonModule} from '@angular/material/button';
 import {MatTableModule} from '@angular/material/table';
-// import {DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE, MatNativeDateModule} from '@angular/material/core';
 import {AllMatchComponent} from './all-match/all-match.component';
 import {RefereeMatchesComponent} from './referee-matches/referee-matches.component';
 import {MatchModifyComponent} from './match-modify/match-modify.component';
-// import {MomentDateAdapter} from '@angular/material-moment-adapter';
 import {MatSelectModule} from '@angular/material/select';
-import {ArrivalTimePickerComponent} from './arrival-time-picker/arrival-time-picker.component';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import {TokenInterceptor} from './_helpers/token.interceptor';
 import {MatInputModule} from '@angular/material/input';
@@ -74,11 +68,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         LoginComponent,
         HomeComponent,
         RefereeComponent,
-        RefereeModalComponent,
         ErrorComponent,
         PrivilegesComponent,
         RefereeDetailsComponent,
-        RefereeModifyComponent,
         AccountDetailsComponent,
         TeamComponent,
         ResetPasswordComponent,
@@ -86,11 +78,9 @@ export function HttpLoaderFactory(http: HttpClient) {
         TeamEditComponent,
         MatchComponent,
         MatchCreateComponent,
-        MatchDetailsComponent,
         AllMatchComponent,
         RefereeMatchesComponent,
         MatchModifyComponent,
-        ArrivalTimePickerComponent,
         TeamCreateComponent,
         TeamFormComponent,
         RefereeFormComponent,

@@ -13,7 +13,7 @@ import {FormControl, Validators} from '@angular/forms';
 })
 export class RefereeDetailsComponent implements OnInit {
 
-    referee: Referee;
+    referee: Referee = new Referee();
     formControl = new FormControl('', [
         Validators.required,
     ]);

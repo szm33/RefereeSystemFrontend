@@ -4,9 +4,9 @@ import {MatchService} from '../_services/match.service';
 import {AuthService} from '../_services/auth.service';
 import {animate, state, style, transition, trigger} from '@angular/animations';
 import {MAT_DIALOG_DATA, MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {ArrivalTime} from '../arrival-time-picker/arrival-time-picker.component';
 import {ReplacementDialogComponent} from './replacemnet-dialog/replacement-dialog.component';
 import {ActivatedRoute, Router} from '@angular/router';
+import {ArrivalTime} from '../model/arrivalTime';
 
 @Component({
     selector: 'app-replacement-match',

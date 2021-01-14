@@ -1,6 +1,6 @@
 import {Component, Inject} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from '@angular/material/dialog';
-import {ArrivalTime} from '../../arrival-time-picker/arrival-time-picker.component';
+import {ArrivalTime} from '../../model/arrivalTime';
 
 @Component({
     selector: 'replacement-dialog',
