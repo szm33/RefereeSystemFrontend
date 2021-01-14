@@ -42,10 +42,6 @@ export class MatchComponent implements OnChanges {
         }
     }
 
-    show(match: Match): void {
-        // match.isClicked = !match.isClicked;
-    }
-
     isReplaceAvailable(match: Match): boolean {
         return new Date() < new Date(match.dateOfMatch) && match.referees.find(referee => referee.id == this.authService.getId()) != null;
     }

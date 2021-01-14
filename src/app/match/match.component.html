@@ -44,7 +44,6 @@
 <!--    <br>-->
 <!--    <br>-->
 <!--</div>-->
-
 <mat-tab-group mat-align-tabs="center">
     <mat-tab label="Show Matches">
         <table mat-table style="overflow: no-display"
@@ -60,7 +59,7 @@
             </ng-container>
             <ng-container matColumnDef="dateOfMatch">
                 <th mat-header-cell *matHeaderCellDef>Date of match</th>
-                <td mat-cell *matCellDef="let element"> {{element.dateOfMatch | date}} </td>
+                <td mat-cell *matCellDef="let element"> {{element.dateOfMatch | date: 'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <!-- Expanded Content Column - The detail row is made up of this one column that spans across all columns -->

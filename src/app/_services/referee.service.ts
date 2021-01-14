@@ -36,7 +36,6 @@ export class RefereeService {
   }
 
   modifyReferee(referee: Referee): Observable<Referee> {
-    referee.id = null;
     return this.http.put<Referee>(URL, referee, httpOptions);
   }
 

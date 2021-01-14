@@ -22,8 +22,7 @@ export class DictionaryService {
 
   getDictionaries() {
     this.http.get<Store>(URL, httpOptions).subscribe(data => {this.store = data;
-    console.log(data);
-    console.log(this.store);
+
     });
   }
 

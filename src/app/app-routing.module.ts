@@ -24,6 +24,7 @@ import {AdminGuard} from './_helpers/guards/AdminGuard';
 import {RefereeEditComponent} from './referee-edit/referee-edit.component';
 import {ReplacementMatchComponent} from './replacement-match/replacement-match.component';
 import {ReplacementDetailsComponent} from './replacement-details/replacement-details.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: '/login'},
@@ -74,6 +75,9 @@ const routes: Routes = [
   {
     path: 'replace/details/:id', component: ReplacementDetailsComponent,
     canActivate: [LoggedGuard]
+  },
+  {
+    path: '**', component: NotFoundComponent
   },
 ];
 

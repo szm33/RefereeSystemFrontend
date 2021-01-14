@@ -60,6 +60,8 @@ import { ReplacementMatchComponent } from './replacement-match/replacement-match
 import {MatDialogModule} from '@angular/material/dialog';
 import {ReplacementDialogComponent} from './replacement-match/replacemnet-dialog/replacement-dialog.component';
 import { ReplacementDetailsComponent } from './replacement-details/replacement-details.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import {MatSortModule} from '@angular/material/sort';
 
 
 export function HttpLoaderFactory(http: HttpClient) {
@@ -97,6 +99,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         ReplacementMatchComponent,
         ReplacementDialogComponent,
         ReplacementDetailsComponent,
+        NotFoundComponent,
     ],
     imports: [
         BrowserModule,
@@ -127,6 +130,7 @@ export function HttpLoaderFactory(http: HttpClient) {
         MatPaginatorModule,
         MatSnackBarModule,
         MatDialogModule,
+        MatSortModule,
     ],
     providers: [{
         provide: HTTP_INTERCEPTORS,

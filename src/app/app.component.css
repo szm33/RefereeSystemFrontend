@@ -16,3 +16,6 @@ span {
     margin-left: auto;
     margin-right: auto;
 }
+.mat-tab-body.mat-tab-body-active {
+    overflow-y: hidden;
+}

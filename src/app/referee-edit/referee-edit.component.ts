@@ -10,14 +10,14 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class RefereeEditComponent implements OnInit {
 
-  refereeToEdit: Referee;
+  refereeToEdit: Referee = new Referee();
 
   constructor(private refereeService: RefereeService,
               private router: ActivatedRoute,
               private navigationRouter: Router) { }
 
   ngOnInit(): void {
-    this.refereeService.getReferee(this.router.snapshot.params['id']).subscribe( referee => this.refereeToEdit = referee);
+    this.refereeService.getReferee(this.router.snapshot.params['id']).subscribe( referee => {this.refereeToEdit = referee;console.log(referee)});
   }
 
   editReferee(referee: Referee) {
