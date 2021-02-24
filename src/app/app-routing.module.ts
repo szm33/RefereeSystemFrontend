@@ -59,10 +59,6 @@ const routes: Routes = [
     path: 'referee/edit/:id', component: RefereeEditComponent,
     canActivate: [AdminGuard]
   },
-  // {
-  //   path: 'replace/:id', component: ArrivalTimePickerComponent,
-  //   canActivate: [LoggedGuard]
-  // },
   {
     path: 'replace', component: ReplacementMatchComponent,
     canActivate: [LoggedGuard]

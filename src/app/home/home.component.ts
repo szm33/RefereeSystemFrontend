@@ -22,9 +22,6 @@ export class HomeComponent implements OnInit {
               private _snackBar: MatSnackBar) { }
 
   ngOnInit(): void {
-    // this.matchService.getMyMatches()
-    //     .subscribe(data => this.matches = data,
-    //         () => {});
   }
 
   getMyMatches(): void {

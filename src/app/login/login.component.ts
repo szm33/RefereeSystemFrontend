@@ -33,10 +33,6 @@ export class LoginComponent implements OnInit {
     this.authService.login({username: this.form.username, password: this.form.password}).subscribe(
       data => {
         console.log(data);
-        // this.tokenStorage.saveToken(data.token);
-        // this.tokenStorage.saveUser(data.username);
-        // this.isLoggedIn = true;
-        // this.username = data.username;
         if (data) {
           this.isLoginFailed = false;
           if (this.authService.getRedirectAfterLogin()) {
@@ -51,12 +47,7 @@ export class LoginComponent implements OnInit {
           this.isLoginFailed = true;
         }
       }
-      // err => {
-      //   this.errorMessage = err.error.message;
-      //   this.isLoginFailed = true;
-      // }
   );
-    // console.log(this.tokenStorage.getToken());
 
   }
 

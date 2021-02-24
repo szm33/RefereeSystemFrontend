@@ -19,7 +19,6 @@ export class MatchCreateComponent implements OnInit {
     freeReferees: Referee[] = [];
     freeTeams: Team[] = [];
     matchFunctions: MatchFunction[] = [];
-//zrobic jak w modyfikacji ze sprawdza czy team/referee jest po zmianie jesli tak zostawia
     pickDateOfMatch(event) {
         this.freeTeams = [];
         this.freeReferees = [];
@@ -63,7 +62,6 @@ export class MatchCreateComponent implements OnInit {
         }
     }
 
-    //dodac jeszcze taka sama walidacje na druzyny i sedziow aby sie nie powtarzaly i dac if na przyciska
     areFunctionsValid(): boolean {
         let isValid = true;
         this.matchFunctions.forEach(matchFunction => {
